@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
-        <activity android:name=".Acvtivities.Main_Page"></activity>
+        <activity android:name=".Acvtivities.new_challenge"></activity>
+        <activity android:name=".Acvtivities.Main_Page" />
         <activity android:name=".Acvtivities.Registar" />
         <activity android:name=".MainActivity">
             <intent-filter>
