@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
-        <activity android:name=".Acvtivities.new_challenge"></activity>
+        <activity android:name=".Acvtivities.Admin"></activity>
+        <activity android:name=".Acvtivities.Family" />
+        <activity android:name=".Acvtivities.Scary" />
+        <activity android:name=".Acvtivities.Funny" />
+        <activity android:name=".Acvtivities.Profile" />
+        <activity android:name=".Acvtivities.new_challenge" />
         <activity android:name=".Acvtivities.Main_Page" />
         <activity android:name=".Acvtivities.Registar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Acvtivities.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

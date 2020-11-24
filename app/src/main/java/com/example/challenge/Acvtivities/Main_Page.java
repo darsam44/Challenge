@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.challenge.MainActivity;
 import com.example.challenge.R;
 
 public class Main_Page extends AppCompatActivity implements View.OnClickListener {

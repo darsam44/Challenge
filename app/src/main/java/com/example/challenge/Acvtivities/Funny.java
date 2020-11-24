@@ -1,22 +1,17 @@
 package com.example.challenge.Acvtivities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.example.challenge.R;
 
 import java.util.List;
 
-public class new_challenge extends AppCompatActivity {
+public class Funny extends AppCompatActivity {
     List<String> categories;
-    List<String> challenges;
-    String info;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_challenge);
+        setContentView(R.layout.activity_funny);
     }
 }

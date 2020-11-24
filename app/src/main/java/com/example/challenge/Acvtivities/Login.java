@@ -1,4 +1,4 @@
-package com.example.challenge;
+package com.example.challenge.Acvtivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,10 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.challenge.Acvtivities.Main_Page;
-import com.example.challenge.Acvtivities.Registar;
+import com.example.challenge.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class Login extends AppCompatActivity implements View.OnClickListener {
     Button regi;
     Button Log;
 
@@ -31,11 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if ( view == regi) {
-            Intent intent = new Intent(MainActivity.this, Registar.class);
+            Intent intent = new Intent(Login.this, Registar.class);
             startActivity(intent);
         }
         else if ( view == Log){
-            Intent intent = new Intent(MainActivity.this, Main_Page.class);
+            Intent intent = new Intent(Login.this, Main_Page.class);
             startActivity(intent);
         }
     }

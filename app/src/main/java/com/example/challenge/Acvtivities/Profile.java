@@ -3,11 +3,10 @@ package com.example.challenge.Acvtivities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 
 import com.example.challenge.R;
 
-public class Registar extends AppCompatActivity {
+public class Profile extends AppCompatActivity {
     String ID;
     String First_Name;
     String Last_Name;
@@ -15,10 +14,13 @@ public class Registar extends AppCompatActivity {
     String Password;
     String Email;
     String Phone;
+    int ASK;
+    int DO;
+    int DECLINE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registar);
+        setContentView(R.layout.activity_profile);
     }
 }
