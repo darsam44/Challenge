@@ -11,28 +11,43 @@ import android.widget.ImageView;
 import com.example.challenge.R;
 
 public class Main_Page extends AppCompatActivity implements View.OnClickListener {
-    Button Chalege;
-    ImageView home;
+    Button B_Challenge;
+    Button B_Funny;
+    Button B_Family;
+    Button B_Scary;
      
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__page);
 
-        Chalege = (Button) findViewById(R.id.new_challenge);
-        Chalege.setOnClickListener(this);
-        home = findViewById(R.id.imgae_home);
-        home.setOnClickListener(this);
+        B_Challenge = (Button) findViewById(R.id.new_challenge);
+        B_Challenge.setOnClickListener(this);
+        B_Funny = (Button) findViewById(R.id.MoveToFunny);
+        B_Funny.setOnClickListener(this);
+        B_Family = (Button) findViewById(R.id.MoveToFamily);
+        B_Family.setOnClickListener(this);
+        B_Scary = (Button) findViewById(R.id.MoveToScarry);
+        B_Scary.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-    if ( view == Chalege){
+    if ( view == B_Challenge){
         Intent intent = new Intent(Main_Page.this, new_challenge.class);
         startActivity(intent);
     }
-    else if (view == home ){
-        Intent intent = new Intent(Main_Page.this, Login.class);
+    else if (view == B_Family){
+            Intent intent = new Intent(Main_Page.this, Family.class);
+            startActivity(intent);
+        }
+    else if (view == B_Funny){
+        Intent intent = new Intent(Main_Page.this, Funny.class);
+        startActivity(intent);
+    }
+    else if (view == B_Scary){
+        Intent intent = new Intent(Main_Page.this, Scary.class);
         startActivity(intent);
     }
     }

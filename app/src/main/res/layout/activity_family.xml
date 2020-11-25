@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="329dp"
         android:layout_marginRight="329dp"
-        android:layout_marginBottom="663dp"
+        android:layout_marginBottom="640dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
