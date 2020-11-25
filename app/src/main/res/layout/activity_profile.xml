@@ -7,4 +7,24 @@
     tools:context=".Acvtivities.Profile"
     android:background="@drawable/gradient_background">
 
+    <ImageView
+        android:id="@+id/image_profile"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/choose_ima"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Choose image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
