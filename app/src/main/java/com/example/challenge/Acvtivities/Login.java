@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login extends AppCompatActivity implements View.OnClickListener {
     Button regi;
     Button Log;
+    Button LogOut_b;
     EditText mEmail, mPassword;
     FirebaseAuth fAuth;
 
@@ -37,12 +38,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Log = (Button) findViewById(R.id.b_login);
         regi .setOnClickListener(this);
         Log.setOnClickListener(this);
-
+        LogOut_b =  findViewById(R.id.Logout_b);
+        LogOut_b.setOnClickListener(this);
     }
 
     public void Logout(View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext() , Register.class));
+        startActivity(new Intent(getApplicationContext() , Login.class));
         finish();
     }
 
@@ -57,6 +59,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             SingIn();
 //            Intent intent = new Intent(Login.this, Main_Page.class);
 //            startActivity(intent);
+        }
+        else if (view == LogOut_b){
+            Logout(view);
         }
     }
 
