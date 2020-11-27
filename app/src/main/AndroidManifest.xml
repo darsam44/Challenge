@@ -21,7 +21,7 @@
         <activity android:name=".Acvtivities.Profile" />
         <activity android:name=".Acvtivities.new_challenge" />
         <activity android:name=".Acvtivities.Main_Page" />
-        <activity android:name=".Acvtivities.Registar" />
+        <activity android:name=".Acvtivities.Register" />
         <activity android:name=".Acvtivities.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
