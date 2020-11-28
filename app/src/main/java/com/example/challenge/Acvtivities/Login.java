@@ -1,8 +1,10 @@
 package com.example.challenge.Acvtivities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,12 +73,43 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             Logout(view);
         }
         else if (view ==forgotPass){
-            ResetYourPass();
+            ResetYourPass(view);
         }
     }
 
-    private void ResetYourPass() {
+    private void ResetYourPass(View view) {
+        EditText resetMail = new EditText((view.getContext()));
+        AlertDialog.Builder passwordReset = new AlertDialog.Builder(view.getContext());
+        passwordReset.setTitle("Reset Password?");
+        passwordReset.setMessage("Enter Your Email To Recived Reset Link");
+        passwordReset.setView(resetMail);
+        passwordReset.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //extract the email and send the link
+               String mail = resetMail.getText().toString();
+               fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                   @Override
+                   public void onSuccess(Void aVoid) {
+                   Toast.makeText(Login.this, "Reset Link Sent To Your Email", Toast.LENGTH_SHORT).show();
+                   }
+               }).addOnFailureListener(new OnFailureListener() {
+                   @Override
+                   public void onFailure(@NonNull Exception e) {
+                       Toast.makeText(Login.this, "Error! Reset Link Not Sent To Your Email" + e.getMessage(), Toast.LENGTH_SHORT).show();
 
+                   }
+               }) ;
+            }
+        });
+        passwordReset.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        passwordReset.create().show();
     }
 
     private void SingIn() {
