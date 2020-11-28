@@ -22,6 +22,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
     EditText mFirstName,mLastName, mUserName, mEmail,mPassword,mPhone;
@@ -29,6 +34,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     TextView mLoginBtn;
     FirebaseAuth fAuth;
     ImageView home;
+    FirebaseFirestore fstore;
 
     String ID;
     String First_Name;
@@ -37,6 +43,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     String Password;
     String Email;
     String Phone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         home.setOnClickListener(this);
 
         fAuth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
+
 
         mRegisterBtn.setOnClickListener(this);
 
@@ -125,6 +134,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 if(task.isSuccessful()) {
 
                      Toast.makeText( Register.this, "User created", Toast.LENGTH_SHORT).show();
+                     ID = fAuth.getCurrentUser().getUid();
+                     //storing all the information of the users after completed the regiteration
+                    DocumentReference documentStore = fstore.collection("Users").document(ID);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("First_Name", First_Name);
+                    user.put("Last_Name", Last_Name);
+                    user.put("Email", Email);
+                    user.put("User_Name", User_Name);
+                    user.put("Phone", Phone);
+                    documentStore.set(user);
                     startActivity(new Intent(getApplicationContext(),Login.class)  );
                 }
                 else{
