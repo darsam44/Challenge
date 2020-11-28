@@ -23,7 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
-    Button regi, MoveTo;
+    Button regi;
+    Button MoveTo;
     Button Log;
     Button LogOut_b;
     EditText mEmail, mPassword;

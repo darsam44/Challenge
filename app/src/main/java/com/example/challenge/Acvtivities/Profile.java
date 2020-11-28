@@ -12,23 +12,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.challenge.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
     String ID;
     String First_Name;
     String Last_Name;
     String User_Name;
-    String Password;
     String Email;
     String Phone;
+    FirebaseAuth Fauf;
+    FirebaseFirestore FStore;
     int ASK;
     int DO;
     int DECLINE;
 
     ImageView Profile;
+    TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose;
 
     private static final int IMAGE_PICK_MODE = 1000;
@@ -39,10 +48,35 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        // for pick image
         Profile = findViewById(R.id.image_profile);
         Choose = findViewById(R.id.choose_ima);
         Choose.setOnClickListener(this);
 
+        // for profile text
+        Last_Name_t = findViewById(R.id.LastName_p);
+        First_Name_t = findViewById(R.id.FirstName_p);
+        Email_t = findViewById(R.id.Email_p);
+        Phone_t = findViewById(R.id.Phone_p);
+        UserName_t = findViewById(R.id.UserName_p);
+
+        FStore = FirebaseFirestore.getInstance();
+        Fauf = FirebaseAuth.getInstance();
+        ID = Fauf.getCurrentUser().getUid();
+        System.out.println(ID);
+
+        DocumentReference DoucStore = FStore.collection("Users").document(ID);
+        DoucStore.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                First_Name_t.setText(value.getString("First_Name"));
+                Toast.makeText(Profile.this, "" + value.getString("First_Name"), Toast.LENGTH_SHORT).show();
+                Last_Name_t.setText(value.getString("Last_Name"));
+                Email_t.setText(value.getString("Email"));
+                Phone_t.setText(value.getString("Phone"));
+                UserName_t.setText(value.getString("User_Name"));
+            }
+        });
     }
 
     @Override
