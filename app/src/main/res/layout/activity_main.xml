@@ -123,4 +123,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/b_login" />
 
+    <Button
+        android:id="@+id/MoveTo"
+        android:layout_width="67dp"
+        android:layout_height="34dp"
+        android:text="Move to mainPage"
+        tools:layout_editor_absoluteX="294dp"
+        tools:layout_editor_absoluteY="655dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
