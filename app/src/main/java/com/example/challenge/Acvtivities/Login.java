@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.challenge.R;
@@ -22,6 +23,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button Log;
     Button LogOut_b;
     EditText mEmail, mPassword;
+    TextView forgotPass;
     FirebaseAuth fAuth;
 
     String Email_log , Password_log;
@@ -40,6 +42,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Log.setOnClickListener(this);
         LogOut_b =  findViewById(R.id.Logout_b);
         LogOut_b.setOnClickListener(this);
+        forgotPass = findViewById(R.id.ForgotPass);
+        forgotPass.setOnClickListener(this);
+
     }
 
     public void Logout(View view){
@@ -63,6 +68,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         else if (view == LogOut_b){
             Logout(view);
         }
+        else if (view ==forgotPass){
+            ResetYourPass();
+        }
+    }
+
+    private void ResetYourPass() {
+
     }
 
     private void SingIn() {

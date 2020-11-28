@@ -25,33 +25,31 @@
 
     <Button
         android:id="@+id/b_login"
-        android:layout_width="140dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
         android:text="LOGIN"
         android:textSize="20sp"
         app:backgroundTint="#9C27B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877" />
+        app:layout_constraintVertical_bias="0.517" />
 
     <Button
         android:id="@+id/b_registar"
         android:layout_width="141dp"
         android:layout_height="70dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:text="REGISTAR"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="REGISTER"
         android:textSize="20sp"
         app:backgroundTint="#9C27B0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toEndOf="@+id/b_login"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877"
+        app:layout_constraintVertical_bias="0.795"
         app:strokeColor="#DF1010" />
 
     <EditText
@@ -83,12 +81,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="173dp"
         android:layout_marginRight="173dp"
-        android:layout_marginBottom="247dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
         android:textColor="#9C27B0"
-        app:layout_constraintBottom_toTopOf="@+id/b_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EmailLogin" />
@@ -108,5 +104,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ForgotPass"
+        android:layout_width="139dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="226dp"
+        android:layout_marginRight="226dp"
+        android:layout_marginBottom="273dp"
+        android:text="Forgot your Password"
+        android:textColor="#9C27B0"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
