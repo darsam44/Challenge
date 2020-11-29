@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.challenge.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -35,10 +36,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     int ASK;
     int DO;
     int DECLINE;
-
+    //FloatingActionButton addVideosBtu;
     ImageView Profile;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
-    Button Choose;
+    Button Choose,addVideosBtu;
 
     private static final int IMAGE_PICK_MODE = 1000;
     private static final int PREMISSION_CODE = 1001;
@@ -77,6 +78,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 UserName_t.setText(value.getString("User_Name"));
             }
         });
+
+        //init UI Views
+        addVideosBtu = findViewById(R.id.addVido);
+        addVideosBtu.setOnClickListener(this);
+        //handle Click
+
+
+
     }
 
     @Override
@@ -98,6 +107,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 // system os is less the marshmelo
                 PickImageFromGallery();
             }
+        }
+        if (view == addVideosBtu){
+            startActivity(new Intent(Profile.this,VideoAct.class));
         }
 
 
