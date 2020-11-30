@@ -113,5 +113,19 @@
         app:layout_constraintTop_toBottomOf="@+id/UserName_p"
         app:layout_constraintVertical_bias="0.74" />
 
+    <Button
+        android:id="@+id/MovetoVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:text="Video"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintStart_toEndOf="@+id/image_profile"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

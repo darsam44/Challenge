@@ -39,6 +39,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     ImageView Profile;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose;
+    Button MoveToVideo;
 
     private static final int IMAGE_PICK_MODE = 1000;
     private static final int PREMISSION_CODE = 1001;
@@ -47,6 +48,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        MoveToVideo = findViewById(R.id.MovetoVideo);
+        MoveToVideo.setOnClickListener(this);
 
         // for pick image
         Profile = findViewById(R.id.image_profile);
@@ -99,8 +103,10 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 PickImageFromGallery();
             }
         }
-
-
+        else if (MoveToVideo == view) {
+            Intent intent = new Intent(Profile.this, VideoAct.class);
+            startActivity(intent);
+        }
     }
 
     private void PickImageFromGallery() {

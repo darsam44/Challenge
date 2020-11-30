@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="10dp"
+    tools:context=".Acvtivities.AddVidoe">
+
+    <!--Video tital-->
+
+    <!--Video-->
+
+    <EditText
+        android:id="@+id/titleET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:inputType="textPersonName|textCapSentences"
+        android:padding="10dp"
+        android:textColor="@color/black" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="59dp"
+        android:layout_marginBottom="362dp" />
+
+    <!--Button pick-->
+    <Button
+        android:id="@+id/uploadVideoBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/videoView"
+        android:layout_marginTop="5dp"
+        android:text="up Video"
+        android:background="@color/design_default_color_primary"
+        android:textColor="@color/white"/>
+
+
+    <!--FAb pick Video-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/pickVideoFad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="346dp"
+        android:layout_marginLeft="346dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="9dp"
+        android:src="@drawable/ic_baseline_add_while" />
+
+</RelativeLayout >
