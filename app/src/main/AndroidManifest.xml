@@ -16,17 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
-        <activity android:name=".Acvtivities.AddVido"></activity>
-        <activity android:name=".Acvtivities.VideoAct" />
-        <activity android:name=".Acvtivities.Admin" />
-        <activity android:name=".Acvtivities.Family" />
-        <activity android:name=".Acvtivities.Scary" />
-        <activity android:name=".Acvtivities.Funny" />
-        <activity android:name=".Acvtivities.Profile" />
-        <activity android:name=".Acvtivities.new_challenge" />
-        <activity android:name=".Acvtivities.Main_Page" />
-        <activity android:name=".Acvtivities.Register" />
-        <activity android:name=".Acvtivities.Login">
+        <activity android:name=".Acvtivities.Activities.AddVido"></activity>
+        <activity android:name=".Acvtivities.Activities.VideoAct" />
+        <activity android:name=".Acvtivities.Activities.Admin" />
+        <activity android:name=".Acvtivities.Activities.Family" />
+        <activity android:name=".Acvtivities.Activities.Scary" />
+        <activity android:name=".Acvtivities.Activities.Funny" />
+        <activity android:name=".Acvtivities.Activities.Profile" />
+        <activity android:name=".Acvtivities.Activities.new_challenge" />
+        <activity android:name=".Acvtivities.Activities.Main_Page" />
+        <activity android:name=".Acvtivities.Activities.Register" />
+        <activity android:name=".Acvtivities.Activities.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

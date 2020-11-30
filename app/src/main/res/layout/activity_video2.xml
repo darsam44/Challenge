@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Acvtivities.VideoAct">
+    tools:context=".Acvtivities.Activities.VideoAct">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/VieosBoton"

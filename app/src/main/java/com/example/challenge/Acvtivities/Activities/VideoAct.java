@@ -1,4 +1,4 @@
-package com.example.challenge.Acvtivities;
+package com.example.challenge.Acvtivities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +31,7 @@ public class VideoAct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // start activiy to add videos
-                startActivity(new Intent(VideoAct.this,AddVido.class));
+                startActivity(new Intent(VideoAct.this, AddVido.class));
 
             }
         });

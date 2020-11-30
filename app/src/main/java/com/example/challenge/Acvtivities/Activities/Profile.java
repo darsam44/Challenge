@@ -1,4 +1,4 @@
-package com.example.challenge.Acvtivities;
+package com.example.challenge.Acvtivities.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.challenge.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -109,7 +108,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             }
         }
         if (view == addVideosBtu){
-            startActivity(new Intent(Profile.this,VideoAct.class));
+            startActivity(new Intent(Profile.this, VideoAct.class));
         }
 
 

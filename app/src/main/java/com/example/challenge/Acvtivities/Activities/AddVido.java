@@ -1,4 +1,4 @@
-package com.example.challenge.Acvtivities;
+package com.example.challenge.Acvtivities.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

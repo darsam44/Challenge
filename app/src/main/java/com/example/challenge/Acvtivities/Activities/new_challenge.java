@@ -1,4 +1,4 @@
-package com.example.challenge.Acvtivities;
+package com.example.challenge.Acvtivities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,16 +11,17 @@ import com.example.challenge.R;
 
 import java.util.List;
 
-public class Family extends AppCompatActivity implements View.OnClickListener {
+public class new_challenge extends AppCompatActivity implements View.OnClickListener {
     List<String> categories;
+    List<String> challenges;
+    String info;
     ImageView home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_family);
-
-        home = findViewById(R.id.image_home_fa);
+        setContentView(R.layout.activity_new_challenge);
+        home = findViewById(R.id.image_home_challenge);
         home.setOnClickListener(this);
 
     }
@@ -28,9 +29,8 @@ public class Family extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if ( view == home){
-            Intent intent = new Intent( Family.this , Main_Page.class);
+            Intent intent = new Intent( new_challenge.this , Main_Page.class);
             startActivity(intent);
         }
-
     }
 }
