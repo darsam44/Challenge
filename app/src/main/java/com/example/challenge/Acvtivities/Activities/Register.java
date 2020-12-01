@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,9 +29,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     EditText mFirstName,mLastName, mUserName, mEmail,mPassword,mPhone;
     Button mRegisterBtn;
     TextView mLoginBtn;
-    FirebaseAuth fAuth;
     ImageView home;
+
+    FireBaseData data;
     FirebaseFirestore fstore;
+    FirebaseAuth fAuth;
 
     String ID;
     String First_Name;
@@ -46,6 +49,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registar);
 
+        //data
+        data = new FireBaseData();
+        fstore = data.getFstore();
+        fAuth = data.getfAuth();
+
         mFirstName   =  (EditText) findViewById(R.id.FirstName);
         mLastName    =  (EditText) findViewById(R.id.LastName);
         mUserName    =  (EditText) findViewById(R.id.UserName);
@@ -56,8 +64,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         home = findViewById(R.id.image_home_re);
         home.setOnClickListener(this);
 
-        fAuth = FirebaseAuth.getInstance();
-        fstore = FirebaseFirestore.getInstance();
 
 
         mRegisterBtn.setOnClickListener(this);
@@ -128,7 +134,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-
                      Toast.makeText( Register.this, "User created", Toast.LENGTH_SHORT).show();
                      ID = fAuth.getCurrentUser().getUid();
                      //storing all the information of the users after completed the regiteration
@@ -145,8 +150,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 else{
                     Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT ).show();
                 }
-
-                }
+            }
         });
 
     }

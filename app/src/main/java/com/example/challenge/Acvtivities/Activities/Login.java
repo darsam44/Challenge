@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
+    FireBaseData data;
     Button regi;
     Button MoveTo;
     Button Log;
@@ -38,9 +40,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // make new data object
+        data = new FireBaseData();
+        fAuth = data.getfAuth();
+
         MoveTo = findViewById(R.id.MoveTo);
         MoveTo.setOnClickListener(this);
-        fAuth = FirebaseAuth.getInstance();
         mEmail       =  (EditText) findViewById(R.id.EmailLogin);
         mPassword    =  (EditText)findViewById(R.id.PasswordLogin);
         regi = (Button) findViewById(R.id.b_registar);
@@ -69,8 +74,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         else if ( view == Log){
             SingIn();
-//            Intent intent = new Intent(Login.this, Main_Page.class);
-//            startActivity(intent);
         }
         else if (view == LogOut_b){
             Logout(view);
@@ -143,7 +146,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     Toast.makeText( Login.this, "log in succesful!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),Main_Page.class)  );
+                    startActivity(new Intent(getApplicationContext(),Main_Page.class));
                 }
                 else{
                     Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT ).show();

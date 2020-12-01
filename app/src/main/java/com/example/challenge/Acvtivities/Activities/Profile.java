@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,8 +35,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     FirebaseFirestore FStore;
     int ASK;
     int DO;
-    int DECLINE;
-    //FloatingActionButton addVideosBtu;
+    int DECLINE;;
+    FireBaseData data;
     ImageView Profile;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose,addVideosBtu;
@@ -47,6 +48,11 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        //data
+        data = new FireBaseData();
+        FStore = data.getFstore();
+        Fauf = data.getfAuth();
 
         // for pick image
         Profile = findViewById(R.id.image_profile);
@@ -60,8 +66,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Phone_t = findViewById(R.id.Phone_p);
         UserName_t = findViewById(R.id.UserName_p);
 
-        FStore = FirebaseFirestore.getInstance();
-        Fauf = FirebaseAuth.getInstance();
+
         ID = Fauf.getCurrentUser().getUid();
         System.out.println(ID);
 
