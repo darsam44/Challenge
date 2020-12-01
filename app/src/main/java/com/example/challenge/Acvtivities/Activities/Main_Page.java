@@ -4,26 +4,44 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Main_Page extends AppCompatActivity implements View.OnClickListener {
+    FireBaseData data;
+    FirebaseFirestore fstore;
+    FirebaseAuth fAuth;
+
+    String ID;
+
     Button B_Challenge;
     Button B_Funny;
     Button B_Family;
     Button B_Scary;
     ImageView LogOut;
+    ImageView B_Admin;
     ImageButton B_Profile1;
      
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main__page);
+
+        //data
+        data = new FireBaseData();
+        fstore = data.getFstore();
+        fAuth = data.getfAuth();
 
         B_Challenge = (Button) findViewById(R.id.new_challenge);
         B_Challenge.setOnClickListener(this);
@@ -37,13 +55,11 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         B_Profile1.setOnClickListener(this);
         LogOut = findViewById(R.id.singOut_mainpage);
         LogOut.setOnClickListener(this);
+        B_Admin = findViewById(R.id.B_toAdmin);
+        B_Admin.setOnClickListener(this);
 
-    }
 
-    public void Logout(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext() , Login.class));
-        finish();
+        CheckIfAdmin();
     }
 
     @Override
@@ -70,6 +86,33 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     }
     else if(view == LogOut){
             Logout(view);
-        }
+    }
+    else if (view == B_Admin){
+        Intent intent = new Intent(Main_Page.this, Admin.class);
+        startActivity(intent);
+    }
+    }
+
+    private void CheckIfAdmin() {
+        ID = fAuth.getCurrentUser().getUid();
+        DocumentReference df = fstore.collection("Users").document(ID);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Log.d("TAG" , "onSuccess:" + documentSnapshot.getData());
+
+                if ( documentSnapshot.getString("IsAdmin") != null) {
+                    B_Admin.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
+    }
+
+    public void Logout(View view){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
     }
 }

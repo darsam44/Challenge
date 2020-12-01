@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Checkable;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     Button regi;
     Button MoveTo;
     Button Log;
-    Button LogOut_b;
     EditText mEmail, mPassword;
     TextView forgotPass;
     FirebaseAuth fAuth;
@@ -52,8 +52,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Log = (Button) findViewById(R.id.b_login);
         regi .setOnClickListener(this);
         Log.setOnClickListener(this);
-        LogOut_b =  findViewById(R.id.Logout_b);
-        LogOut_b.setOnClickListener(this);
         forgotPass = findViewById(R.id.ForgotPass);
         forgotPass.setOnClickListener(this);
 
@@ -68,13 +66,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void Logout(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext() , Login.class));
-        finish();
-    }
-
-
     @Override
     public void onClick(View view) {
         if ( view == regi) {
@@ -83,9 +74,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         else if ( view == Log){
             SingIn();
-        }
-        else if (view == LogOut_b){
-            Logout(view);
         }
         else if (view ==forgotPass){
             ResetYourPass(view);
