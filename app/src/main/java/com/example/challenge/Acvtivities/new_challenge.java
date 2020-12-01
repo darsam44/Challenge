@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.challenge.R;
@@ -16,6 +17,7 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
     List<String> challenges;
     String info;
     ImageView home;
+    Button addVideosBtu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,11 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
         home = findViewById(R.id.image_home_challenge);
         home.setOnClickListener(this);
 
+        //init UI Views
+        addVideosBtu = findViewById(R.id.addVido);
+        addVideosBtu.setOnClickListener(this);
+        //handle Click
+
     }
 
     @Override
@@ -31,6 +38,9 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
         if ( view == home){
             Intent intent = new Intent( new_challenge.this , Main_Page.class);
             startActivity(intent);
+        }
+        else if (view == addVideosBtu){
+            startActivity(new Intent(new_challenge.this,VideoAct.class));
         }
     }
 }
