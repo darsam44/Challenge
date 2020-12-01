@@ -82,7 +82,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 UserName_t.setText(value.getString("User_Name"));
             }
         });
-
     }
 
     @Override

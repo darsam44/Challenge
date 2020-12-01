@@ -40,6 +40,7 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
         }
         else if (view == addVideosBtu){
             startActivity(new Intent(new_challenge.this, AddVideoActivity.class));
+
         }
     }
 }
