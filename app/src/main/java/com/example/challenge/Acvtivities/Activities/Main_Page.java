@@ -7,14 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.challenge.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Main_Page extends AppCompatActivity implements View.OnClickListener {
     Button B_Challenge;
     Button B_Funny;
     Button B_Family;
     Button B_Scary;
+    ImageView LogOut;
     ImageButton B_Profile1;
      
     @Override
@@ -32,8 +35,15 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         B_Scary.setOnClickListener(this);
         B_Profile1 = findViewById(R.id.B_Profile);
         B_Profile1.setOnClickListener(this);
+        LogOut = findViewById(R.id.singOut_mainpage);
+        LogOut.setOnClickListener(this);
 
+    }
 
+    public void Logout(View view){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
     }
 
     @Override
@@ -58,5 +68,8 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         Intent intent = new Intent(Main_Page.this, Profile.class);
         startActivity(intent);
     }
+    else if(view == LogOut){
+            Logout(view);
+        }
     }
 }

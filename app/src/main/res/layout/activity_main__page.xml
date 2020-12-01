@@ -75,4 +75,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
+    <ImageView
+        android:id="@+id/singOut_mainpage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="184dp"
+        android:layout_marginRight="184dp"
+        android:layout_marginBottom="249dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/MoveToFamily"
+        app:layout_constraintEnd_toStartOf="@+id/new_challenge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

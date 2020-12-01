@@ -59,6 +59,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(fAuth.getCurrentUser()!= null){
+            startActivity(new Intent(getApplicationContext(), Main_Page.class)  );
+            finish();
+        }
+    }
+
     public void Logout(View view){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext() , Login.class));
