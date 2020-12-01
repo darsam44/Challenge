@@ -26,11 +26,13 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -43,6 +45,10 @@ import java.util.HashMap;
 
 public class AddVideoActivity extends AppCompatActivity {
 
+    FireBaseData data;
+    //FirebaseFirestore fstore;
+    FirebaseAuth fAuth;
+    String ID;
     //actionbar
     private ActionBar actionBar;
 
@@ -64,6 +70,11 @@ public class AddVideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vido);
+
+        //data
+        data = new FireBaseData();
+        //fstore = data.getFstore();
+        fAuth = data.getfAuth();
 
         // init actionbar
         actionBar = getSupportActionBar();
@@ -108,7 +119,7 @@ public class AddVideoActivity extends AppCompatActivity {
         });
 
 
-        uploadVideoBtn.setOnClickListener(new View.OnClickListener() {
+        pickVideoFad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -119,7 +130,7 @@ public class AddVideoActivity extends AppCompatActivity {
 
     private void uploadVideoFirebase() {
         progressDialog.show();
-
+        ID = fAuth.getCurrentUser().getUid();
         //timestamp
         String timestamp = ""+System.currentTimeMillis();
 
@@ -143,12 +154,11 @@ public class AddVideoActivity extends AppCompatActivity {
                     //now we can video details to our firebase
                     HashMap<String, Object> hashmap = new HashMap<>();
                     hashmap.put("title", "" + title);
-                    hashmap.put("ID", "" + timestamp);
                     hashmap.put("timestamp", "" +timestamp);
                     hashmap.put("videoUrl","" + downloadUri);
 
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Videos");
-                    reference.child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                    reference.child(ID).child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             //Video details added to database

@@ -16,12 +16,17 @@ import android.widget.Toast;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -137,19 +142,37 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                      Toast.makeText( Register.this, "User created", Toast.LENGTH_SHORT).show();
                      ID = fAuth.getCurrentUser().getUid();
                      //storing all the information of the users after completed the regiteration
-                    DocumentReference documentStore = fstore.collection("Users").document(ID);
+                    //DocumentReference documentStore = fstore.collection("Users").document(ID);
+                    ArrayList<Object> Videos = new ArrayList<>();
                     Map<String, Object> user = new HashMap<>();
                     user.put("First_Name", First_Name);
                     user.put("Last_Name", Last_Name);
                     user.put("Email", Email);
                     user.put("User_Name", User_Name);
                     user.put("Phone", Phone);
-                    documentStore.set(user);
-                    startActivity(new Intent(getApplicationContext(),Login.class)  );
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                    //documentStore.set(user);
+                    //startActivity(new Intent(getApplicationContext(),Login.class)  );
+                    reference.child(ID).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            //Video details added to database
+                            Toast.makeText(Register.this, "succseful to registar ", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(),Login.class)  );
+
+                        }
+                    })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(),  Toast.LENGTH_SHORT).show();
+                                }
+                            });
                 }
-                else{
-                    Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT ).show();
-                }
+
+                //else{
+                   // Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT ).show();
+                //}
             }
         });
 
