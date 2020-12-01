@@ -1,6 +1,8 @@
 package com.example.challenge.Acvtivities.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +10,25 @@ import android.view.View;
 
 import com.example.challenge.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.DatabaseConfig;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class VideoActivity extends AppCompatActivity {
 
     //UI views
     FloatingActionButton addVideosBtu;
+    private RecyclerView videosRv;
     //change actionbar titleF
+    private ArrayList<ModelVideo> videoArrayList;
+    //adapter
+    private AdapterVideo adapterVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +40,11 @@ public class VideoActivity extends AppCompatActivity {
 
         //init UI Views
         addVideosBtu = findViewById(R.id.addVideosBtn);
+        videosRv = findViewById(R.id.videosRv);
+
+
+        //function call, loadvibes
+        loadVideosFromFirebase();
 
         //handle Click
         addVideosBtu.setOnClickListener(new View.OnClickListener() {
@@ -37,5 +57,34 @@ public class VideoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void loadVideosFromFirebase() {
+        videoArrayList = new ArrayList<>();
+
+        //db reffernce
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    //get data
+                    ModelVideo modelVideo = ds.getValue(ModelVideo.class);
+                    videoArrayList.add(modelVideo);
+                }
+                //setup adapter
+                adapterVideo = new AdapterVideo(VideoActivity.this, videoArrayList);
+                //set adapter to recyclerview
+                videosRv.setAdapter(adapterVideo);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
