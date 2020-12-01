@@ -26,7 +26,7 @@ import android.widget.VideoView;
 import com.example.challenge.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AddVido extends AppCompatActivity {
+public class AddVideoActivity extends AppCompatActivity {
 
     //actionbar
     private ActionBar actionBar;
@@ -38,10 +38,10 @@ public class AddVido extends AppCompatActivity {
     private FloatingActionButton pickVideoFad;
 
     private  static  final int VIDEO_PICK_GALLERY_code   =100;
-    private  static  final int VIDEO_PICK_Cmara_code  =101;
-    private  static  final int Cmara_REQUEST_code=102;
+    private  static  final int VIDEO_PICK_CAmara_code =101;
+    private  static  final int CAMERA_REQUEST_code =102;
 
-    private  String [] cameraP;
+    private  String [] cameraPermission;
     private  Uri videoUri;
 
     @Override
@@ -53,7 +53,7 @@ public class AddVido extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         //title
-        actionBar.setTitle("add new Video");
+        actionBar.setTitle("Add New Video");
         //add back Button
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -65,7 +65,7 @@ public class AddVido extends AppCompatActivity {
 
 
         //Camera Permissions
-        cameraP= new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_APN_SETTINGS};
+        cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         uploadVideoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +78,7 @@ public class AddVido extends AppCompatActivity {
         uploadVideoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 videoPickDialog();
             }
         });
@@ -108,7 +109,7 @@ public class AddVido extends AppCompatActivity {
 
 
     private void requestCameraPermission(){
-        ActivityCompat.requestPermissions(this,cameraP,VIDEO_PICK_Cmara_code);
+        ActivityCompat.requestPermissions(this, cameraPermission,CAMERA_REQUEST_code);
     }
     private boolean checkCameraPermission(){
     boolean result1 = ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
@@ -127,7 +128,7 @@ public class AddVido extends AppCompatActivity {
 
     private  void videoPickCamera(){
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        startActivityForResult(Intent.createChooser(intent,"select videos"),VIDEO_PICK_GALLERY_code);
+        startActivityForResult(intent,VIDEO_PICK_CAmara_code);
     }
 
     private void setVideoToVideoView(){
@@ -141,6 +142,7 @@ public class AddVido extends AppCompatActivity {
         videoView.setOnPreparedListener((new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
+
                 videoView.pause();
             }
         }));
@@ -149,7 +151,7 @@ public class AddVido extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
-            case Cmara_REQUEST_code:
+            case CAMERA_REQUEST_code:
                 if(grantResults.length>0){
                     boolean camreAcc  = grantResults[0] == getPackageManager().PERMISSION_GRANTED;
                     boolean storageAcc = grantResults[1] == getPackageManager().PERMISSION_GRANTED;
@@ -159,7 +161,7 @@ public class AddVido extends AppCompatActivity {
                     }
                     else{
                         //both or one of those denied
-                        Toast.makeText(this,"Camera Storage",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"Camera & Storage Pemission are required",Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -175,7 +177,7 @@ public class AddVido extends AppCompatActivity {
                 videoUri = data.getData();
                 setVideoToVideoView();
             }
-        else if (requestCode == VIDEO_PICK_Cmara_code){
+        else if (requestCode == VIDEO_PICK_CAmara_code){
             videoUri = data.getData();
                 setVideoToVideoView();
             }

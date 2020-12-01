@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:padding="10dp"
-    tools:context=".Acvtivities.Activities.AddVido">
+    tools:context=".Acvtivities.Activities.AddVideoActivity">
 
     <!--Video tital-->
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/videoView"
         android:layout_marginTop="5dp"
-        android:text="up Video"
+        android:text="Upload Video"
         android:background="@color/design_default_color_primary"
         android:textColor="@color/colorWhite"/>
 

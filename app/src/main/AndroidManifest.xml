@@ -16,8 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
-        <activity android:name=".Acvtivities.Activities.AddVido"></activity>
-        <activity android:name=".Acvtivities.Activities.VideoAct" />
+        <activity android:name=".Acvtivities.Activities.AddVideoActivity"></activity>
+        <activity android:name=".Acvtivities.Activities.VideoActivity" />
         <activity android:name=".Acvtivities.Activities.Admin" />
         <activity android:name=".Acvtivities.Activities.Family" />
         <activity android:name=".Acvtivities.Activities.Scary" />

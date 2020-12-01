@@ -9,30 +9,31 @@ import android.view.View;
 import com.example.challenge.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class VideoAct extends AppCompatActivity {
+public class VideoActivity extends AppCompatActivity {
 
     //UI views
     FloatingActionButton addVideosBtu;
-    //change actiobar title
+    //change actionbar titleF
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video2);
+        setContentView(R.layout.activity_video);
 
         //change actiobar title
         setTitle("Videos");
 
         //init UI Views
-        addVideosBtu = findViewById(R.id.VieosBoton);
+        addVideosBtu = findViewById(R.id.addVideosBtn);
 
         //handle Click
         addVideosBtu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // start activiy to add videos
-                startActivity(new Intent(VideoAct.this, AddVido.class));
-
+                if (v==addVideosBtu) {
+                    startActivity(new Intent(VideoActivity.this, AddVideoActivity.class));
+                }
             }
         });
 
