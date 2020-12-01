@@ -39,7 +39,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     FireBaseData data;
     ImageView Profile;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
-    Button Choose,addVideosBtu;
+    Button Choose;
 
     private static final int IMAGE_PICK_MODE = 1000;
     private static final int PREMISSION_CODE = 1001;
@@ -83,13 +83,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        //init UI Views
-        addVideosBtu = findViewById(R.id.addVido);
-        addVideosBtu.setOnClickListener(this);
-        //handle Click
-
-
-
     }
 
     @Override
@@ -112,9 +105,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 PickImageFromGallery();
             }
         }
-        if (view == addVideosBtu){
-            startActivity(new Intent(Profile.this, AddVideoActivity.class));
-        }
+
 
 
     }
