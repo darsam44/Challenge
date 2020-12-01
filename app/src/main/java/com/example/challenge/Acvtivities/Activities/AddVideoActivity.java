@@ -53,10 +53,10 @@ public class AddVideoActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
 
         //title
-        actionBar.setTitle("Add New Video");
+        //actionBar.setTitle("Add New Video");
         //add back Button
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
+       // actionBar.setDisplayHomeAsUpEnabled(true);
         //init UI Views
         titleET = findViewById(R.id.titleET);
         videoView = findViewById(R.id.videoView);

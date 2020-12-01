@@ -113,7 +113,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             }
         }
         if (view == addVideosBtu){
-            startActivity(new Intent(Profile.this, VideoActivity.class));
+            startActivity(new Intent(Profile.this, AddVideoActivity.class));
         }
 
 
