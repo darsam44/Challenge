@@ -9,13 +9,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.storage.StorageManager;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +27,19 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.example.challenge.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.sql.DatabaseMetaData;
+import java.util.HashMap;
 
 public class AddVideoActivity extends AppCompatActivity {
 
@@ -42,8 +57,9 @@ public class AddVideoActivity extends AppCompatActivity {
     private  static  final int CAMERA_REQUEST_code =102;
 
     private  String [] cameraPermission;
-    private  Uri videoUri;
-
+    private  Uri videoUri = null;
+    private ProgressDialog progressDialog;
+    private String title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,14 +80,31 @@ public class AddVideoActivity extends AppCompatActivity {
         pickVideoFad = findViewById(R.id.pickVideoFad);
 
 
+        //setup progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Upload Video");
+        progressDialog.setCanceledOnTouchOutside(false);
+
         //Camera Permissions
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         uploadVideoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                title = titleET.getText().toString().trim();
+                if(TextUtils.isEmpty(title)){
+                    Toast.makeText(AddVideoActivity.this,"Title is required...", Toast.LENGTH_SHORT).show();
+                }
+                else if(videoUri==null){
+                    // video is not picked
+                    Toast.makeText(AddVideoActivity.this,"Pick a video before you can uplode...", Toast.LENGTH_SHORT).show();
 
-            }
+                }
+                else{
+                    //upload video function
+                    uploadVideoFirebase();
+                }            }
         });
 
 
@@ -80,6 +113,65 @@ public class AddVideoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 videoPickDialog();
+            }
+        });
+    }
+
+    private void uploadVideoFirebase() {
+        progressDialog.show();
+
+        //timestamp
+        String timestamp = ""+System.currentTimeMillis();
+
+        //file path and name in firebase storage
+        String filePathAndName = "Videos/" + "video_" + timestamp;
+
+        //storage refernce
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
+
+        //uploadvideo, you can upload any type using this method
+        storageReference.putFile(videoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                //video uploaded, get url of uploaded video
+                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                while(!uriTask.isSuccessful());
+                Uri downloadUri = uriTask.getResult();
+                if(uriTask.isSuccessful()){
+                    //url of uploaded video is recieved
+
+                    //now we can video details to our firebase
+                    HashMap<String, Object> hashmap = new HashMap<>();
+                    hashmap.put("title", "" + title);
+                    hashmap.put("ID", "" + timestamp);
+                    hashmap.put("timestamp", "" +timestamp);
+                    hashmap.put("videoUrl","" + downloadUri);
+
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Videos");
+                    reference.child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            //Video details added to database
+                            progressDialog.dismiss();
+                            Toast.makeText(AddVideoActivity.this, "Video Uploaded... ", Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressDialog.dismiss();
+                                    Toast.makeText(AddVideoActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //failed uploding to storage
+                progressDialog.dismiss();
+                Toast.makeText(AddVideoActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
