@@ -1,5 +1,6 @@
 package com.example.challenge.Acvtivities.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,11 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -95,17 +102,36 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
     private void CheckIfAdmin() {
         ID = fAuth.getCurrentUser().getUid();
-        DocumentReference df = fstore.collection("Users").document(ID);
-        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID);
+        reff.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.d("TAG" , "onSuccess:" + documentSnapshot.getData());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String flag = snapshot.child("IsAdmin").getValue().toString();
 
-                if ( documentSnapshot.getString("IsAdmin") != null) {
+                if ( flag.compareTo("yes") == 0){
                     B_Admin.setVisibility(View.VISIBLE);
+                    //Toast.makeText(Main_Page.this, "" + flag, Toast.LENGTH_SHORT).show();
                 }
             }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
+
+
+
+//        DocumentReference df = fstore.collection("Users").document(ID);
+//        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                Log.d("TAG" , "onSuccess:" + documentSnapshot.getData());
+//
+//                if ( documentSnapshot.getString("IsAdmin") != null) {
+//                    B_Admin.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
 
 
     }

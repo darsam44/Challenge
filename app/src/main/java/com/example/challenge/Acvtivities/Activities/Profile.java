@@ -18,6 +18,11 @@ import android.widget.Toast;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -70,18 +75,41 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         ID = Fauf.getCurrentUser().getUid();
         System.out.println(ID);
 
-        DocumentReference DoucStore = FStore.collection("Users").document(ID);
-        DoucStore.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID);
+        reff.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                First_Name_t.setText(value.getString("First_Name"));
-                Toast.makeText(Profile.this, "" + value.getString("First_Name"), Toast.LENGTH_SHORT).show();
-                Last_Name_t.setText(value.getString("Last_Name"));
-                Email_t.setText(value.getString("Email"));
-                Phone_t.setText(value.getString("Phone"));
-                UserName_t.setText(value.getString("User_Name"));
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                First_Name = snapshot.child("First_Name").getValue().toString();
+                Last_Name =  snapshot.child("Last_Name").getValue().toString();
+                Email =  snapshot.child("Email").getValue().toString();
+                User_Name = snapshot.child("User_Name").getValue().toString();
+                Phone = snapshot.child("Phone").getValue().toString();
+                First_Name_t.setText(First_Name);
+                Last_Name_t.setText(Last_Name);
+                Email_t.setText(Email);
+                UserName_t.setText(User_Name);
+                Phone_t.setText(Phone);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+//        DocumentReference DoucStore = FStore.collection("Users").document(ID);
+//        DoucStore.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+//                First_Name_t.setText(value.getString("First_Name"));
+//                Toast.makeText(Profile.this, "" + value.getString("First_Name"), Toast.LENGTH_SHORT).show();
+//                Last_Name_t.setText(value.getString("Last_Name"));
+//                Email_t.setText(value.getString("Email"));
+//                Phone_t.setText(value.getString("Phone"));
+//                UserName_t.setText(value.getString("User_Name"));
+//            }
+//        });
     }
 
     @Override
