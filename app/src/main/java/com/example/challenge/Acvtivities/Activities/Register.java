@@ -38,7 +38,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     ImageView home;
 
     FireBaseData data;
-    FirebaseFirestore fstore;
     FirebaseAuth fAuth;
 
     String ID;
@@ -58,7 +57,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         //data
         data = new FireBaseData();
-        fstore = data.getFstore();
         fAuth = data.getfAuth();
 
         mFirstName   =  (EditText) findViewById(R.id.FirstName);

@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,11 +31,18 @@ public class VideoActivity extends AppCompatActivity {
     private ArrayList<ModelVideo> videoArrayList;
     //adapter
     private AdapterVideo adapterVideo;
+    //data
+    FireBaseData data;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
+
+        //data
+        data = new FireBaseData();
+        fAuth = data.getfAuth();
 
         //change actiobar title
         setTitle("Videos");
@@ -61,10 +70,10 @@ public class VideoActivity extends AppCompatActivity {
 
     private void loadVideosFromFirebase() {
         videoArrayList = new ArrayList<>();
-
+        String ID = fAuth.getCurrentUser().toString();
         //db reffernce
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.child(ID).child("Videos").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
