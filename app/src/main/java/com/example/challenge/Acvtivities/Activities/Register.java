@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
@@ -47,6 +48,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     String Password;
     String Email;
     String Phone;
+    List<Object> Videos;
 
 
     @Override
@@ -102,6 +104,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         Last_Name= mLastName.getText().toString();
         Phone    = mPhone.getText().toString();
         User_Name = mUserName.getText().toString();
+        Videos = new ArrayList<Object>();
+        Videos.add("dar");
+
 
         if(TextUtils.isEmpty(Email)){
             mEmail.setError("Email is Required.");
@@ -143,16 +148,19 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                      ID = fAuth.getCurrentUser().getUid();
                      //storing all the information of the users after completed the regiteration
                     //DocumentReference documentStore = fstore.collection("Users").document(ID);
-                    ArrayList<Object> Videos = new ArrayList<>();
+
                     Map<String, Object> user = new HashMap<>();
                     user.put("First_Name", First_Name);
                     user.put("Last_Name", Last_Name);
                     user.put("Email", Email);
                     user.put("User_Name", User_Name);
                     user.put("Phone", Phone);
+                    user.put( "IsAdmin" , "no");
+                    user.put("Vidoes" , Videos);
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
                     //documentStore.set(user);
                     //startActivity(new Intent(getApplicationContext(),Login.class)  );
+
                     reference.child(ID).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

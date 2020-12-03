@@ -157,8 +157,9 @@ public class AddVideoActivity extends AppCompatActivity {
                     hashmap.put("timestamp", "" +timestamp);
                     hashmap.put("videoUrl","" + downloadUri);
 
+
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-                    reference.child(ID).child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    reference.child(ID).child("Vidoes").setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             //Video details added to database
