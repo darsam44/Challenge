@@ -1,6 +1,7 @@
 package com.example.challenge.Acvtivities.DATA;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FireBaseData {
@@ -18,6 +19,10 @@ public class FireBaseData {
 
     public FirebaseFirestore getFstore() {
         return Fstore;
+    }
+
+    public String GetcurrentID(){
+        return fAuth.getCurrentUser().getUid();
     }
 
 

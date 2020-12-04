@@ -21,8 +21,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -47,7 +51,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     String Password;
     String Email;
     String Phone;
-    List<Object> Videos;
 
 
     @Override
@@ -78,8 +81,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             startActivity(new Intent(getApplicationContext(), Login.class)  );
                 finish();
         }
-
-
     }
 
     @Override
@@ -96,14 +97,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private void CheckIfEmpty() {
 
         Email = mEmail.getText().toString().trim();
-
         Password  = mPassword.getText().toString().trim();
         First_Name= mFirstName.getText().toString();
         Last_Name= mLastName.getText().toString();
         Phone    = mPhone.getText().toString();
         User_Name = mUserName.getText().toString();
-        Videos = new ArrayList<Object>();
-        Videos.add("dar");
 
 
         if(TextUtils.isEmpty(Email)){
@@ -126,61 +124,72 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             mPhone.setError("Phone is Required.");
             return;
         }
-
         if(TextUtils.isEmpty(Password)){
             mPassword.setError("Password is Required.");
             return;
         }
-
         if(Password.length() < 6){
             mPassword.setError("Password Must be >= 6 Characters");
             return;
         }
-        //register the user in firebase
-        fAuth.createUserWithEmailAndPassword(this.Email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
+        Query userNameQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("User_Name").equalTo(User_Name);
+        userNameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                     Toast.makeText( Register.this, "User created", Toast.LENGTH_SHORT).show();
-                     ID = fAuth.getCurrentUser().getUid();
-                     //storing all the information of the users after completed the regiteration
-                    //DocumentReference documentStore = fstore.collection("Users").document(ID);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int temp = (int) snapshot.getChildrenCount();
+            if ( snapshot.getChildrenCount() >0){
+                Toast.makeText(Register.this , "Choose a diffrent username" , Toast.LENGTH_LONG).show();
+            }
+            else{
+                fAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("First_Name", First_Name);
-                    user.put("Last_Name", Last_Name);
-                    user.put("Email", Email);
-                    user.put("User_Name", User_Name);
-                    user.put("Phone", Phone);
-                    user.put( "IsAdmin" , "no");
-                    user.put("Vidoes" , Videos);
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-                    //documentStore.set(user);
-                    //startActivity(new Intent(getApplicationContext(),Login.class)  );
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText( Register.this, "User created", Toast.LENGTH_SHORT).show();
+                            ID = data.GetcurrentID();
 
-                    reference.child(ID).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            //Video details added to database
-                            Toast.makeText(Register.this, "succseful to registar ", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),Login.class)  );
+                            //storing all the information of the users after completed the regiteration
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("First_Name", First_Name);
+                            user.put("Last_Name", Last_Name);
+                            user.put("Email", Email);
+                            user.put("User_Name", User_Name);
+                            user.put("Phone", Phone);
+                            user.put( "IsAdmin" , "no");
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+                            //documentStore.set(user);
+                            //startActivity(new Intent(getApplicationContext(),Login.class)  );
 
-                        }
-                    })
-                            .addOnFailureListener(new OnFailureListener() {
+                            reference.child(ID).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(),  Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
+                                public void onSuccess(Void aVoid) {
+                                    //Video details added to database
+                                    Toast.makeText(Register.this, "succseful to registar ", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(),Login.class)  );
 
-                //else{
-                   // Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT ).show();
-                //}
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(),  Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    }
+                });
+            }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
+        //register the user in firebase
+
 
     }
 }
