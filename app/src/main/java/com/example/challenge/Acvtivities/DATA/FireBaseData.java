@@ -10,15 +10,10 @@ public class FireBaseData {
 
     public FireBaseData() {
         fAuth = FirebaseAuth.getInstance();
-        Fstore = FirebaseFirestore.getInstance();
     }
 
     public FirebaseAuth getfAuth() {
         return fAuth;
-    }
-
-    public FirebaseFirestore getFstore() {
-        return Fstore;
     }
 
     public String GetcurrentID(){

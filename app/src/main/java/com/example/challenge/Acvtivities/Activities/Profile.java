@@ -5,10 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +33,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.net.URI;
 
 public class Profile extends AppCompatActivity implements View.OnClickListener {
     String ID;
@@ -42,7 +53,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     int DO;
     int DECLINE;;
     FireBaseData data;
-    ImageView Profile;
+    StorageReference storageReference;
+
+    ImageView Profile_images;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose;
 
@@ -56,11 +69,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
         //data
         data = new FireBaseData();
-        FStore = data.getFstore();
         Fauf = data.getfAuth();
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
         // for pick image
-        Profile = findViewById(R.id.image_profile);
+        Profile_images = findViewById(R.id.image_profile);
         Choose = findViewById(R.id.choose_ima);
         Choose.setOnClickListener(this);
 
@@ -73,7 +87,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
 
         ID = Fauf.getCurrentUser().getUid();
-        System.out.println(ID);
+        LoadImageProfile();
+
+
 
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID);
         reff.addValueEventListener(new ValueEventListener() {
@@ -89,7 +105,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 Email_t.setText(Email);
                 UserName_t.setText(User_Name);
                 Phone_t.setText(Phone);
-
             }
 
             @Override
@@ -97,74 +112,60 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-
-//        DocumentReference DoucStore = FStore.collection("Users").document(ID);
-//        DoucStore.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//                First_Name_t.setText(value.getString("First_Name"));
-//                Toast.makeText(Profile.this, "" + value.getString("First_Name"), Toast.LENGTH_SHORT).show();
-//                Last_Name_t.setText(value.getString("Last_Name"));
-//                Email_t.setText(value.getString("Email"));
-//                Phone_t.setText(value.getString("Phone"));
-//                UserName_t.setText(value.getString("User_Name"));
-//            }
-//        });
     }
+
 
     @Override
     public void onClick(View view) {
-        if (view == Choose){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
-                    // premission not granted ask for it
-                    String [] premission = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                    //show pop up for runtime premission
-                    requestPermissions(premission , PREMISSION_CODE);
-                }
-                else{
-                    // premission already granted
-                    PickImageFromGallery();
-                }
-            }
-            else{
-                // system os is less the marshmelo
-                PickImageFromGallery();
-            }
+
+        if ( Choose == view){
+            Intent openGalleryIntent = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(openGalleryIntent , 1000);
         }
-
-
-
     }
 
-    private void PickImageFromGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent , IMAGE_PICK_MODE);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case PREMISSION_CODE:{
-                if ( grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    PickImageFromGallery();
-                }
-                else{
-                    //permission was denied
-                    Toast.makeText(this, "Permission denied" , Toast.LENGTH_LONG).show();
-                }
+    // Load image from firebase to the imageview
+    private void LoadImageProfile() {
+        StorageReference profileRef = storageReference.child("Users/"+ID+"profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(Profile_images);
             }
-        }
+        });
     }
 
     //handle resulet of image pick
     @Override
     public void onActivityResult(int requestCode, int resultCode,  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && resultCode == IMAGE_PICK_MODE) {
-            //set image to ImageView
-            Profile.setImageURI(data.getData());
+        if (requestCode == 1000) {
+            if (resultCode == Activity.RESULT_OK) {
+                //set image to ImageView
+                Uri imageUri = data.getData(); // get the URI of the image
+                uploadImageToFireBase(imageUri); // upload the URI to firebAse
+            }
         }
+    }
+
+    private void uploadImageToFireBase(Uri imageUri) {
+        //upload the image to FireBase Storge
+        StorageReference fileRef = storageReference.child("Users/"+ID+"profile.jpg"); // save the image im the Users-> ID -> profile.jpg
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+           fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+               @Override
+               public void onSuccess(Uri uri) {
+                   Picasso.get().load(uri).into(Profile_images); // put the image at imageview
+               }
+           });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Profile.this , " Fail uploaded Image" , Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
