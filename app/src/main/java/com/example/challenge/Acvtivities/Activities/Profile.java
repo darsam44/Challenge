@@ -57,10 +57,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
 
     ImageView Profile_images;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
-    Button Choose;
-
-    private static final int IMAGE_PICK_MODE = 1000;
-    private static final int PREMISSION_CODE = 1001;
+    Button Choose , Edit_Text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +81,30 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Email_t = findViewById(R.id.Email_p);
         Phone_t = findViewById(R.id.Phone_p);
         UserName_t = findViewById(R.id.UserName_p);
-
+        Edit_Text = findViewById(R.id.b_EditText);
+        Edit_Text.setOnClickListener(this);
 
         ID = Fauf.getCurrentUser().getUid();
         LoadImageProfile();
+        ShowAllRefernce();
+
+    }
 
 
 
+
+    @Override
+    public void onClick(View view) {
+        if ( Choose == view){
+            Intent openGalleryIntent = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(openGalleryIntent , 1000);
+        }
+        if ( view == Edit_Text){
+            SendToEditProfile(view);
+        }
+    }
+
+    private void ShowAllRefernce() {
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID);
         reff.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,13 +114,13 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 Email =  snapshot.child("Email").getValue().toString();
                 User_Name = snapshot.child("User_Name").getValue().toString();
                 Phone = snapshot.child("Phone").getValue().toString();
+
                 First_Name_t.setText(First_Name);
                 Last_Name_t.setText(Last_Name);
                 Email_t.setText(Email);
                 UserName_t.setText(User_Name);
                 Phone_t.setText(Phone);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -114,14 +128,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
-
-    @Override
-    public void onClick(View view) {
-
-        if ( Choose == view){
-            Intent openGalleryIntent = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(openGalleryIntent , 1000);
-        }
+    private void SendToEditProfile(View view) {
+        Intent pro = new Intent(view.getContext() , EditProfile.class);
+        pro.putExtra("First_Name" ,First_Name);
+        pro.putExtra("Last_Name", Last_Name);
+        pro.putExtra("Email", Email);
+        pro.putExtra("User_Name", User_Name);
+        pro.putExtra("Phone", Phone);
+        startActivity(pro);
     }
 
     // Load image from firebase to the imageview

@@ -47,7 +47,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
         //data
         data = new FireBaseData();
-        fstore = data.getFstore();
+
         fAuth = data.getfAuth();
 
         B_Challenge = (Button) findViewById(R.id.new_challenge);

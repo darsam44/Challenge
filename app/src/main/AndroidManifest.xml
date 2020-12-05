@@ -3,11 +3,9 @@
     package="com.example.challenge">
     <!-- //Adding  Read External Storge Premission -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- //Give premision to connect to the INTERNET -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!--Premission -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Premission -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
-        <activity android:name=".Acvtivities.Activities.AddVideoActivity"></activity>
+        <activity android:name=".Acvtivities.Activities.EditProfile"></activity>
+        <activity android:name=".Acvtivities.Activities.AddVideoActivity" />
         <activity android:name=".Acvtivities.Activities.VideoActivity" />
         <activity android:name=".Acvtivities.Activities.Admin" />
         <activity android:name=".Acvtivities.Activities.Family" />
