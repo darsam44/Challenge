@@ -6,7 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FireBaseData {
    private FirebaseAuth fAuth;
-   private FirebaseFirestore Fstore;
+
 
     public FireBaseData() {
         fAuth = FirebaseAuth.getInstance();

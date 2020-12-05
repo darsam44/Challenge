@@ -158,10 +158,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             user.put("User_Name", User_Name);
                             user.put("Phone", Phone);
                             user.put( "IsAdmin" , "no");
-                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-                            //documentStore.set(user);
-                            //startActivity(new Intent(getApplicationContext(),Login.class)  );
 
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
                             reference.child(ID).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
