@@ -10,15 +10,15 @@
 
     <Button
         android:id="@+id/new_challenge"
-        android:layout_width="108dp"
-        android:layout_height="76dp"
+        android:layout_width="83dp"
+        android:layout_height="52dp"
         android:text="new challenge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintHorizontal_bias="0.957"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.288" />
 
     <Button
         android:id="@+id/MoveToFamily"
@@ -68,9 +68,9 @@
         android:id="@+id/B_Profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_on" />
@@ -88,8 +88,10 @@
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/MoveToFamily"
         app:layout_constraintEnd_toStartOf="@+id/new_challenge"
+        app:layout_constraintHorizontal_bias="0.039"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@android:drawable/btn_dialog" />
 
     <ImageView
@@ -109,5 +111,44 @@
         app:layout_constraintStart_toEndOf="@+id/singOut_mainpage"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
+    <TextView
+        android:id="@+id/Search_User"
+        android:layout_width="124dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="60dp"
+        android:text="Search Username:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/singOut_mainpage" />
+
+    <EditText
+        android:id="@+id/Edit_Search"
+        android:layout_width="122dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginRight="132dp"
+        android:textColor="#673AB7"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Search_User"
+        app:layout_constraintTop_toBottomOf="@+id/B_Profile" />
+
+    <Button
+        android:id="@+id/b_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="20dp"
+        android:text="search"
+        app:layout_constraintBottom_toTopOf="@+id/new_challenge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Edit_Search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

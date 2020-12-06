@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,11 +34,12 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     FirebaseAuth fAuth;
 
     String ID;
-
+    EditText Edit_Search;
     Button B_Challenge;
     Button B_Funny;
     Button B_Family;
     Button B_Scary;
+    Button b_search;
     ImageView LogOut;
     ImageView B_Admin;
     ImageButton B_Profile1;
@@ -50,6 +54,10 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
         fAuth = data.getfAuth();
 
+
+        Edit_Search = findViewById(R.id.Edit_Search);
+        b_search = findViewById(R.id.b_search);
+        b_search.setOnClickListener(this);
         B_Challenge = (Button) findViewById(R.id.new_challenge);
         B_Challenge.setOnClickListener(this);
         B_Funny = (Button) findViewById(R.id.MoveToFunny);
@@ -98,7 +106,11 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         Intent intent = new Intent(Main_Page.this, Admin.class);
         startActivity(intent);
     }
+    else if (b_search == view){
+        CheckifthereUser(view);
     }
+    }
+
 
     private void CheckIfAdmin() {
         ID = fAuth.getCurrentUser().getUid();
@@ -118,20 +130,15 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
             }
         });
+    }
 
-
-
-//        DocumentReference df = fstore.collection("Users").document(ID);
-//        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                Log.d("TAG" , "onSuccess:" + documentSnapshot.getData());
-//
-//                if ( documentSnapshot.getString("IsAdmin") != null) {
-//                    B_Admin.setVisibility(View.VISIBLE);
-//                }
-//            }
-//        });
+    private void CheckifthereUser(View view) {
+        String User_Name = Edit_Search.getText().toString();
+        if(TextUtils.isEmpty(User_Name)){
+            Edit_Search.setError("UserName is Required.");
+            return;
+        }
+        Query userNameQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("User_Name").equalTo(User_Name);
 
 
     }

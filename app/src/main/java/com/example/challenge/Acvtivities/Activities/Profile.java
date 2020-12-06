@@ -55,7 +55,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     FireBaseData data;
     StorageReference storageReference;
 
-    ImageView Profile_images;
+    ImageView Profile_images, P_home;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose , Edit_Text;
 
@@ -63,6 +63,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        P_home = findViewById(R.id.P_home);
+        P_home.setOnClickListener(this);
 
         //data
         data = new FireBaseData();
@@ -99,8 +102,12 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             Intent openGalleryIntent = new Intent(Intent.ACTION_PICK , MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(openGalleryIntent , 1000);
         }
-        if ( view == Edit_Text){
+        else if ( view == Edit_Text){
             SendToEditProfile(view);
+        }
+        else if ( P_home == view){
+            Intent in = new Intent(Profile.this , Main_Page.class);
+            startActivity(in);
         }
     }
 
