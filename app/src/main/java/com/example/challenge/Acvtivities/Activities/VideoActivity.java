@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.DatabaseConfig;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -45,7 +47,7 @@ public class VideoActivity extends AppCompatActivity {
         fAuth = data.getfAuth();
 
         //change actiobar title
-        setTitle("Videos");
+        //setTitle("Videos");
 
         //init UI Views
         addVideosBtu = findViewById(R.id.addVideosBtn);
@@ -72,28 +74,33 @@ public class VideoActivity extends AppCompatActivity {
         videoArrayList = new ArrayList<>();
         String ID = fAuth.getCurrentUser().getUid();
         //db reffernce
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.child(ID).child("Videos").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot ds: snapshot.getChildren()){
-                    //get data
-                    ModelVideo modelVideo = ds.getValue(ModelVideo.class);
-                    videoArrayList.add(modelVideo);
-                }
-                //setup adapter
-                adapterVideo = new AdapterVideo(VideoActivity.this, videoArrayList);
-                //set adapter to recyclerview
-                videosRv.setAdapter(adapterVideo);
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference fileRef = storageReference.child("Users_Videos/");
 
 
-            }
+        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users_Videos/");
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        storageReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                for (DataSnapshot ds: snapshot.getChildren()){
+//                    //get data
+//                    ModelVideo modelVideo = ds.getValue(ModelVideo.class);
+//                    videoArrayList.add(modelVideo);
+//                }
+//                //setup adapter
+//                adapterVideo = new AdapterVideo(VideoActivity.this, videoArrayList);
+//                //set adapter to recyclerview
+//                videosRv.setAdapter(adapterVideo);
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 }

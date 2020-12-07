@@ -28,7 +28,7 @@ import java.util.Calendar;
 public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideos> {
     //FirebaseAuth fAuth;
     //String ID = fAuth.getCurrentUser().getUid();
-    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+    //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
     private Context context;
 
     private ArrayList<ModelVideo> videoArrayList;
