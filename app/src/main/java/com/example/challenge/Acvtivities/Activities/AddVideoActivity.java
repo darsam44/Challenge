@@ -135,11 +135,10 @@ public class AddVideoActivity extends AppCompatActivity {
         String timestamp = ""+System.currentTimeMillis();
 
         //file path and name in firebase storage
-        String filePathAndName = "Users_Videos/"+ID+ "video_" + timestamp;
+        String filePathAndName = "Users_Videos/"+ID+ "/" + timestamp;
 
         //storage refernce
         StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);
-
         //uploadvideo, you can upload any type using this method
         storageReference.putFile(videoUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

@@ -74,33 +74,33 @@ public class VideoActivity extends AppCompatActivity {
         videoArrayList = new ArrayList<>();
         String ID = fAuth.getCurrentUser().getUid();
         //db reffernce
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference fileRef = storageReference.child("Users_Videos/");
+        //StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+        //StorageReference fileRef = storageReference.child("Users_Videos/");
 
 
-        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users_Videos/");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(ID).child("Videos");
 
-//        storageReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                for (DataSnapshot ds: snapshot.getChildren()){
-//                    //get data
-//                    ModelVideo modelVideo = ds.getValue(ModelVideo.class);
-//                    videoArrayList.add(modelVideo);
-//                }
-//                //setup adapter
-//                adapterVideo = new AdapterVideo(VideoActivity.this, videoArrayList);
-//                //set adapter to recyclerview
-//                videosRv.setAdapter(adapterVideo);
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    //get data
+                    ModelVideo modelVideo = ds.getValue(ModelVideo.class);
+                    videoArrayList.add(modelVideo);
+                }
+                //setup adapter
+                adapterVideo = new AdapterVideo(VideoActivity.this, videoArrayList);
+                //set adapter to recyclerview
+                videosRv.setAdapter(adapterVideo);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
