@@ -77,16 +77,14 @@ public class VideoActivity extends AppCompatActivity {
         //StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         //StorageReference fileRef = storageReference.child("Users_Videos/");
 
-
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(ID).child("Videos");
-
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot ds: snapshot.getChildren()){
                     //get data
-                    ModelVideo modelVideo = ds.getValue(ModelVideo.class);
+                    ModelVideo modelVideo = new ModelVideo (ds.child("timestamp").getValue().toString(),ds.child("title").getValue().toString(),ds.child("videoUrl").getValue().toString());
                     videoArrayList.add(modelVideo);
                 }
                 //setup adapter
