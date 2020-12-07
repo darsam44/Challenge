@@ -31,14 +31,11 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideos
     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
     private Context context;
 
+    private ArrayList<ModelVideo> videoArrayList;
+
     public AdapterVideo(Context context, ArrayList<ModelVideo> videoArrayList) {
         this.context = context;
         this.videoArrayList = videoArrayList;
-    }
-
-    private ArrayList<ModelVideo> videoArrayList;
-
-    public AdapterVideo() {
     }
 
     @NonNull

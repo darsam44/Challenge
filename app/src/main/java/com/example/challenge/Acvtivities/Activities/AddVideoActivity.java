@@ -135,7 +135,7 @@ public class AddVideoActivity extends AppCompatActivity {
         String timestamp = ""+System.currentTimeMillis();
 
         //file path and name in firebase storage
-        String filePathAndName = "Videos/" + "video_" + timestamp;
+        String filePathAndName = "Users_Videos/"+ID+ "video_" + timestamp;
 
         //storage refernce
         StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathAndName);

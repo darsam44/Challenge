@@ -41,4 +41,20 @@
         app:layout_constraintStart_toEndOf="@+id/image_profile"
         app:layout_constraintTop_toBottomOf="@+id/choose_ima" />
 
+    <Button
+        android:id="@+id/VideoActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="208dp"
+        android:layout_marginLeft="208dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:layout_marginBottom="524dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addVido" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

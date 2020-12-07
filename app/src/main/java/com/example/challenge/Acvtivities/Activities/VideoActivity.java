@@ -70,7 +70,7 @@ public class VideoActivity extends AppCompatActivity {
 
     private void loadVideosFromFirebase() {
         videoArrayList = new ArrayList<>();
-        String ID = fAuth.getCurrentUser().toString();
+        String ID = fAuth.getCurrentUser().getUid();
         //db reffernce
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(ID).child("Videos").addValueEventListener(new ValueEventListener() {

@@ -17,7 +17,7 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
     List<String> challenges;
     String info;
     ImageView home;
-    Button addVideosBtu;
+    Button addVideosBtu,VideoActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,8 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
         addVideosBtu = findViewById(R.id.addVido);
         addVideosBtu.setOnClickListener(this);
         //handle Click
+        VideoActivity =findViewById(R.id.VideoActivity);
+        VideoActivity.setOnClickListener(this);
     }
 
     @Override
@@ -42,5 +44,10 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(new_challenge.this, AddVideoActivity.class));
 
         }
+        else if (view == VideoActivity){
+            startActivity(new Intent(new_challenge.this, VideoActivity.class));
+
+        }
+
     }
 }
