@@ -32,8 +32,15 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     FireBaseData data;
     FirebaseFirestore fstore;
     FirebaseAuth fAuth;
+    DatabaseReference Reff;
 
     String ID;
+    String First_Name;
+    String Last_Name;
+    String User_Name;
+    String Email;
+    String Phone;
+
     EditText Edit_Search;
     Button B_Challenge;
     Button B_Funny;
@@ -51,7 +58,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
         //data
         data = new FireBaseData();
-
+        Reff = FirebaseDatabase.getInstance().getReference();
         fAuth = data.getfAuth();
 
 
@@ -133,13 +140,47 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     }
 
     private void CheckifthereUser(View view) {
-        String User_Name = Edit_Search.getText().toString();
-        if(TextUtils.isEmpty(User_Name)){
+        String User_Name_Search = Edit_Search.getText().toString();
+        if(TextUtils.isEmpty(User_Name_Search)){
             Edit_Search.setError("UserName is Required.");
             return;
         }
-        Query userNameQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("User_Name").equalTo(User_Name);
 
+        Reff.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                boolean flag = false;
+              for(DataSnapshot snapshot : datasnapshot.getChildren()  ){
+                  ID = snapshot.getKey();
+                  First_Name = snapshot.child("First_Name").getValue(String.class);
+                  Last_Name = snapshot.child("Last_Name").getValue(String.class);
+                  User_Name = snapshot.child("User_Name").getValue(String.class);
+                  Email = snapshot.child("Email").getValue(String.class);
+                  Phone = snapshot.child("Phone").getValue(String.class);
+
+                  if ( User_Name.equals(User_Name_Search) ){
+                      flag = true;
+                      Intent pro = new Intent(view.getContext() , Other_user_profile.class);
+                      pro.putExtra( "ID" , ID);
+                      pro.putExtra("First_Name" ,First_Name);
+                      pro.putExtra("Last_Name", Last_Name);
+                      pro.putExtra("Email", Email);
+                      pro.putExtra("User_Name", User_Name);
+                      pro.putExtra("Phone", Phone);
+                      startActivity(pro);
+                  }
+              }
+              if ( !flag){
+                  Toast.makeText(Main_Page.this , "The user name is not exist " , Toast.LENGTH_LONG).show();
+              }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
