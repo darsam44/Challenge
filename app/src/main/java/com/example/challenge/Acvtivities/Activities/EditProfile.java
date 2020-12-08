@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 
@@ -33,8 +34,6 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     String User_Name;
     String Email;
     String Phone;
-    String isAdmin;
-
     //data
     FireBaseData data;
     FirebaseAuth fAuth;
@@ -98,26 +97,42 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         Email = e_Email.getText().toString();
         Phone = e_Phone.getText().toString();
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(ID);
-
-        Map<String, Object> user = new HashMap<>();
-        user.put("First_Name", First_Name);
-        user.put("Last_Name", Last_Name);
-        user.put("Email", Email);
-        user.put("User_Name", User_Name);
-        user.put("Phone", Phone);
-        user.put( "IsAdmin" , "no");
-
-
-        reference.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+        Query userNameQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("User_Name").equalTo(User_Name);
+        userNameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onSuccess(Void aVoid) {
-                startActivity(new Intent(getApplicationContext(),Profile.class));
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int temp = (int) snapshot.getChildrenCount();
+                if ( snapshot.getChildrenCount() >0){
+                    Toast.makeText(EditProfile.this , "Choose a diffrent username" , Toast.LENGTH_LONG).show();
+                }
+                else{
+                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(ID);
+
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("First_Name", First_Name);
+                    user.put("Last_Name", Last_Name);
+                    user.put("Email", Email);
+                    user.put("User_Name", User_Name);
+                    user.put("Phone", Phone);
+                    user.put( "IsAdmin" , "no");
+
+                    reference.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            startActivity(new Intent(getApplicationContext(),Profile.class));
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EditProfile.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
-        }).addOnFailureListener(new OnFailureListener() {
+
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(EditProfile.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
