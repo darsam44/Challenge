@@ -2,18 +2,16 @@ package com.example.challenge.Acvtivities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
+import com.example.challenge.Acvtivities.Videos.VideoActivity;
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

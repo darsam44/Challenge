@@ -1,4 +1,4 @@
-package com.example.challenge.Acvtivities.Activities;
+package com.example.challenge.Acvtivities.Videos;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -18,9 +18,6 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.challenge.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;

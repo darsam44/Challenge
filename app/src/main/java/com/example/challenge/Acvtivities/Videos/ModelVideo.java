@@ -1,4 +1,4 @@
-package com.example.challenge.Acvtivities.Activities;
+package com.example.challenge.Acvtivities.Videos;
 
 public class ModelVideo {
     String timestamp, title, videoUrl;

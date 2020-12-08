@@ -1,4 +1,4 @@
-package com.example.challenge.Acvtivities.Activities;
+package com.example.challenge.Acvtivities.Challengs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.challenge.Acvtivities.Activities.Main_Page;
+import com.example.challenge.Acvtivities.Videos.AddVideoActivity;
 import com.example.challenge.R;
 
 import java.util.List;
@@ -45,7 +47,7 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
 
         }
         else if (view == VideoActivity){
-            startActivity(new Intent(new_challenge.this, VideoActivity.class));
+            startActivity(new Intent(new_challenge.this, com.example.challenge.Acvtivities.Videos.VideoActivity.class));
 
         }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
     android:padding="10dp"
-    tools:context=".Acvtivities.Activities.AddVideoActivity">
+    tools:context=".Acvtivities.Videos.AddVideoActivity">
 
     <!--Video tital-->
 
