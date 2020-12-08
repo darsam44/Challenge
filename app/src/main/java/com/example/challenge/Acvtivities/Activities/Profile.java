@@ -58,6 +58,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     ImageView Profile_images, P_home;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose , Edit_Text;
+    Button Video_Profole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Fauf = data.getfAuth();
         storageReference = FirebaseStorage.getInstance().getReference();
 
+        // Video_Profole//
+        Video_Profole= findViewById(R.id.Video_Profole);
+        Video_Profole.setOnClickListener(this);
 
         // for pick image
         Profile_images = findViewById(R.id.image_profile);
@@ -108,6 +112,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         else if ( P_home == view){
             Intent in = new Intent(Profile.this , Main_Page.class);
             startActivity(in);
+        }
+        else if (view == Video_Profole){
+            startActivity(new Intent(Profile.this, VideoActivity.class));
         }
     }
 

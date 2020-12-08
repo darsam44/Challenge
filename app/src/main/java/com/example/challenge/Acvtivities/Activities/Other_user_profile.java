@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
     TextView T_first, T_last , T_Email , T_Phone , T_user_name;
     ImageView Profile_images, Home_Other;
 
-
+    Button Video_Other_user_profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,10 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         Home_Other= findViewById(R.id.Home_Other);
         Home_Other.setOnClickListener(this);
         Profile_images = findViewById(R.id.O_image_profile);
+
+        // Video_Other_user_profile//
+        Video_Other_user_profile=findViewById(R.id.Video_Other_user_profile);
+        Video_Other_user_profile.setOnClickListener(this);
 
 
         Intent dataFromProfile = getIntent();
@@ -80,6 +85,9 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         if (view == Home_Other){
             Intent in = new Intent(Other_user_profile.this , Main_Page.class);
             startActivity(in);
+        }
+        else if (view ==Video_Other_user_profile ){
+            startActivity(new Intent(Other_user_profile.this, VideoActivity.class));
         }
     }
 

@@ -73,6 +73,10 @@ public class VideoActivity extends AppCompatActivity {
     private void loadVideosFromFirebase() {
         videoArrayList = new ArrayList<>();
         String ID = fAuth.getCurrentUser().getUid();
+        Intent dataFromProfile = getIntent();
+        String ID2 = dataFromProfile.getStringExtra("ID");
+        if (!ID.equals(ID2))
+            ID=ID2;
         //db reffernce
         //StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         //StorageReference fileRef = storageReference.child("Users_Videos/");
@@ -91,7 +95,6 @@ public class VideoActivity extends AppCompatActivity {
                 adapterVideo = new AdapterVideo(VideoActivity.this, videoArrayList);
                 //set adapter to recyclerview
                 videosRv.setAdapter(adapterVideo);
-
 
             }
 
