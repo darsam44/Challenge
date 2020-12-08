@@ -87,7 +87,9 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
             startActivity(in);
         }
         else if (view ==Video_Other_user_profile ){
-            startActivity(new Intent(Other_user_profile.this, VideoActivity.class));
+            Intent pro = new Intent(view.getContext() , VideoActivity.class);
+            pro.putExtra("ID" , ID);
+            startActivity(pro);
         }
     }
 

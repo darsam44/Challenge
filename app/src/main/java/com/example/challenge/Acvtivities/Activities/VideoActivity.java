@@ -36,6 +36,8 @@ public class VideoActivity extends AppCompatActivity {
     //data
     FireBaseData data;
     FirebaseAuth fAuth;
+    String ID2;
+    String ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,9 @@ public class VideoActivity extends AppCompatActivity {
         data = new FireBaseData();
         fAuth = data.getfAuth();
 
+
+        Intent dataFromProfile = getIntent();
+        ID2 = dataFromProfile.getStringExtra("ID");
         //change actiobar title
         setTitle("Videos");
 
@@ -72,10 +77,8 @@ public class VideoActivity extends AppCompatActivity {
 
     private void loadVideosFromFirebase() {
         videoArrayList = new ArrayList<>();
-        String ID = fAuth.getCurrentUser().getUid();
-        Intent dataFromProfile = getIntent();
-        String ID2 = dataFromProfile.getStringExtra("ID");
-        if (!ID.equals(ID2))
+        ID = fAuth.getCurrentUser().getUid();
+        if (!ID.equals(ID2) && ID2 != null)
             ID=ID2;
         //db reffernce
         //StorageReference storageReference = FirebaseStorage.getInstance().getReference();
