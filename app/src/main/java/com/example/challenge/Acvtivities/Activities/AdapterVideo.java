@@ -141,7 +141,7 @@ public class AdapterVideo extends RecyclerView.Adapter<AdapterVideo.HolderVideos
             super(itemView);
 
             //init UI Views of row_video.xml
-            videoView= itemView.findViewById(R.id.videoView);
+            videoView= itemView.findViewById(R.id.VideoView);
             titleTV = itemView.findViewById(R.id.titleTV);
             timeTv = itemView.findViewById(R.id.timeTv);
             progressBar = itemView.findViewById(R.id.progressBar);

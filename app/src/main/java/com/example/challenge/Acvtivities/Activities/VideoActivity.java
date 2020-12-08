@@ -47,7 +47,7 @@ public class VideoActivity extends AppCompatActivity {
         fAuth = data.getfAuth();
 
         //change actiobar title
-        //setTitle("Videos");
+        setTitle("Videos");
 
         //init UI Views
         addVideosBtu = findViewById(R.id.addVideosBtn);
@@ -84,7 +84,7 @@ public class VideoActivity extends AppCompatActivity {
 
                 for (DataSnapshot ds: snapshot.getChildren()){
                     //get data
-                    ModelVideo modelVideo = new ModelVideo (ds.child("timestamp").getValue().toString(),ds.child("title").getValue().toString(),ds.child("videoUrl").getValue().toString());
+                    ModelVideo modelVideo = ds.getValue(ModelVideo.class);
                     videoArrayList.add(modelVideo);
                 }
                 //setup adapter
