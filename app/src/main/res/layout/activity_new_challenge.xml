@@ -30,29 +30,30 @@
         android:id="@+id/addVido"
         android:layout_width="112dp"
         android:layout_height="66dp"
-        android:layout_marginStart="174dp"
-        android:layout_marginLeft="174dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginRight="43dp"
         android:text="Add Video"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/image_home_challenge"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="488dp" />
 
     <Button
         android:id="@+id/VideoActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginBottom="552dp"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="615dp" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="293dp"
+        android:layout_height="44dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="205dp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="293dp"
+        android:layout_height="44dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="129dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
