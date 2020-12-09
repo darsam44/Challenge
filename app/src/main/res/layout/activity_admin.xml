@@ -136,7 +136,7 @@
         app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="@+id/edit_chal"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568"
+        app:layout_constraintVertical_bias="0.842"
         app:srcCompat="@drawable/plus_icon" />
 
     <ImageView
@@ -198,4 +198,18 @@
         app:layout_constraintEnd_toStartOf="@+id/checkBox5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
+
+    <EditText
+        android:id="@+id/info"
+        android:layout_width="308dp"
+        android:layout_height="153dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Write a short text that explain what to do "
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

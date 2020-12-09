@@ -30,7 +30,7 @@ import java.util.List;
 public class new_challenge extends AppCompatActivity implements View.OnClickListener {
     List<String> categories;
     List<String> challenges;
-    String info;
+    String info, spinner_category, spinner_challenge;
     ImageView home;
     Button addVideosBtu;
     Spinner spinner, spinner2;
@@ -66,13 +66,14 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
                     String temp = Categories.get(j);
                     if (adapterView.getItemAtPosition(i).equals(temp)) {
                         reff.child(temp).child("challenge").addListenerForSingleValueEvent(new ValueEventListener() {
+
                             @Override
                             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                                spinner_category = temp;
                                 ChallengesByCategory.clear();
                                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
                                     String s = snapshot.getKey();
                                     ChallengesByCategory.add(s);
-                                    System.out.println( "this is:  " +  s);
                                 }
                                 fillSpinner();
                                 adapter_2.notifyDataSetChanged();
@@ -94,6 +95,19 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                System.out.println("choose: " + parent.getItemAtPosition(i).toString());
+                spinner_challenge = parent.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         //init UI Views
         addVideosBtu = findViewById(R.id.addVido);
         addVideosBtu.setOnClickListener(this);
@@ -108,7 +122,11 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
         }
         else if (view == addVideosBtu){
-            startActivity(new Intent(new_challenge.this, AddVideoActivity.class));
+            Intent moveTo = new Intent(view.getContext(),AddVideoActivity.class);
+            moveTo.putExtra("Category_Choose", spinner_category);
+            moveTo.putExtra("Challenge_Choose", spinner_challenge);
+            startActivity(moveTo);
+
 
         }
     }
@@ -130,7 +148,6 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
                     String s = snapshot.getKey();
                     Categories.add(s);
                 }
-                System.out.println("finish to: ");
                 adapter_1.notifyDataSetChanged();
             }
             @Override

@@ -29,8 +29,8 @@ import java.util.Map;
 
 public class Admin extends AppCompatActivity implements View.OnClickListener {
     ImageView plus_cat, plus_chal;
-    EditText edit_cat, edit_chal;
-    String category, challenge;
+    EditText edit_cat, edit_chal, info;
+    String category, challenge, infoChallenge;
     ArrayList<String> SpinnerCategory;
     ArrayList<String> WhichCheckBox;
     CheckBox checkBox1, checkBox2,checkBox3,checkBox4,checkBox5;
@@ -53,7 +53,7 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
         checkBox4.setOnClickListener(this);
         checkBox5.setOnClickListener(this);
 
-
+        info = findViewById(R.id.info);
         edit_chal= findViewById(R.id.edit_chal);
         plus_cat = findViewById(R.id.plus_cat);
         plus_chal= findViewById(R.id.plus_chal);
@@ -151,6 +151,7 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
     }
     private void AddChallengeAsAdmin() {
         challenge = edit_chal.getText().toString().trim();
+        infoChallenge = info.getText().toString().trim();
         if(TextUtils.isEmpty(challenge)){
             edit_chal.setError("You must write a challenge");
             return;
@@ -159,11 +160,17 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
             Toast.makeText(Admin.this, "You Must Fill At Least One Category", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(TextUtils.isEmpty(infoChallenge)){
+            info.setError("You must write explanation to the challenge ");
+            return;
+        }
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Categories");
         for (int i=0; i<WhichCheckBox.size();i++){
-            reference.child(WhichCheckBox.get(i)).child("challenge").child(challenge).setValue("info").addOnSuccessListener(new OnSuccessListener<Void>() {
+            reference.child(WhichCheckBox.get(i)).child("challenge").child(challenge).setValue(infoChallenge).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
+                    edit_chal.setText("");
+                    info.setText("");
                     Toast.makeText(Admin.this, "Challenge has been added!", Toast.LENGTH_SHORT).show();
 
                 }
@@ -193,6 +200,7 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
                     reference.child(category).setValue(Cat).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+                            edit_chal.setText("");
                             Toast.makeText(Admin.this, "Category Successfully Added", Toast.LENGTH_SHORT).show();
 
                         }

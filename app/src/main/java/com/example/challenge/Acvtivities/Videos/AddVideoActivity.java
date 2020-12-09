@@ -48,7 +48,6 @@ public class AddVideoActivity extends AppCompatActivity {
     String ID;
     //actionbar
     private ActionBar actionBar;
-
     //UI Views
     private EditText titleET;
     private VideoView videoView;
@@ -62,7 +61,10 @@ public class AddVideoActivity extends AppCompatActivity {
     private  String [] cameraPermission;
     private  Uri videoUri = null;
     private ProgressDialog progressDialog;
-    private String title;
+    String title ,spinner_category, spinner_challenge, timestamp;
+    Task<Uri> uriTask;
+    Uri downloadUri
+    ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,11 +78,12 @@ public class AddVideoActivity extends AppCompatActivity {
         // init actionbar
         actionBar = getSupportActionBar();
 
-        //title
-        //actionBar.setTitle("Add New Video");
-        //add back Button
-        //actionBar.setDisplayShowHomeEnabled(true);
-       // actionBar.setDisplayHomeAsUpEnabled(true);
+        //pull data from new challenge
+        Intent dataFromNewChallenge = getIntent();
+        spinner_category = dataFromNewChallenge.getStringExtra("Category_Choose");
+        spinner_challenge = dataFromNewChallenge.getStringExtra("Challenge_Choose");
+
+
         //init UI Views
         titleET = findViewById(R.id.titleET);
         videoView = findViewById(R.id.videoView);
@@ -111,7 +114,8 @@ public class AddVideoActivity extends AppCompatActivity {
                 }
                 else{
                     //upload video function
-                    uploadVideoFirebase();
+                    uploadVideoFirebaseUser();
+                    uploadVideoFirebaseCategories();
                 }            }
         });
 
@@ -125,11 +129,12 @@ public class AddVideoActivity extends AppCompatActivity {
         });
     }
 
-    private void uploadVideoFirebase() {
+    // upload to Storge and to User realtime database
+    private void uploadVideoFirebaseUser() {
         progressDialog.show();
         ID = fAuth.getCurrentUser().getUid();
         //timestamp
-        String timestamp = ""+System.currentTimeMillis();
+        timestamp = ""+System.currentTimeMillis();
 
         //file path and name in firebase storage
         String filePathAndName = "Users_Videos/"+ID+ "/" + timestamp;
@@ -141,9 +146,9 @@ public class AddVideoActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //video uploaded, get url of uploaded video
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while(!uriTask.isSuccessful());
-                Uri downloadUri = uriTask.getResult();
+                downloadUri = uriTask.getResult();
                 if(uriTask.isSuccessful()){
                     //url of uploaded video is recieved
 
@@ -182,6 +187,28 @@ public class AddVideoActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    // upload to realtime database in categories
+    private void uploadVideoFirebaseCategories() {
+        HashMap<String, Object> hashmap = new HashMap<>();
+        hashmap.put("title", "" + title);
+        hashmap.put("timestamp", "" +timestamp);
+        hashmap.put("videoUrl","" + downloadUri);
+        hashmap.put("ID" , ID);
+        hashmap.put("Challenge",spinner_challenge );
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Categories");
+        reference.child(spinner_category).child("Videos").child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                System.out.println("Video succefull uploaded to Categories");
+
+            }
+        });
+
+    }
+
 
     private void videoPickDialog() {
         String [] options ={"Camera","Gallery"};
