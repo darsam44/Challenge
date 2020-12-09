@@ -30,30 +30,40 @@
         android:id="@+id/addVido"
         android:layout_width="112dp"
         android:layout_height="66dp"
+        android:layout_marginStart="271dp"
+        android:layout_marginLeft="271dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="84dp"
         android:text="Add Video"
-        tools:layout_editor_absoluteX="271dp"
-        tools:layout_editor_absoluteY="488dp" />
-
-    <Button
-        android:id="@+id/VideoActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="260dp"
-        tools:layout_editor_absoluteY="615dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="293dp"
         android:layout_height="44dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="205dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="293dp"
         android:layout_height="44dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="129dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_home_challenge" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

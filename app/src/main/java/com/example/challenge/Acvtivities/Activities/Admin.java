@@ -109,7 +109,6 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
                     String s = snapshot.getKey();
                     SpinnerCategory.add(s);
                 }
-                Toast.makeText(Admin.this, "the Size: " + SpinnerCategory.size(), Toast.LENGTH_SHORT).show();
                 for (int i = 0 ; i < SpinnerCategory.size() ; i++){
                     switch (i) {
                         case 0: {
