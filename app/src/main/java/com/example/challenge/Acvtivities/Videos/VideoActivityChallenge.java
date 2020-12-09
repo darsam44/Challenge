@@ -39,10 +39,6 @@ public class VideoActivityChallenge extends AppCompatActivity implements View.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        //data
-//        data = new FireBaseData();
-//        fAuth = data.getfAuth();
-
         P_Home = findViewById(R.id.P_home_Video_challenge);
         P_Home.setOnClickListener(this);
 
@@ -50,7 +46,6 @@ public class VideoActivityChallenge extends AppCompatActivity implements View.On
 
         //init UI Views
         videosRv = findViewById(R.id.videosRv);
-
 
         //function call, loadvibes
         loadVideosFromFirebase();
