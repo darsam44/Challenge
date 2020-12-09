@@ -16,6 +16,7 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
@@ -39,6 +40,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class AddVideoActivity extends AppCompatActivity {
 
@@ -63,12 +67,15 @@ public class AddVideoActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     String title ,spinner_category, spinner_challenge, timestamp;
     Task<Uri> uriTask;
-    Uri downloadUri
-    ;
+    Uri downloadUri;
+
+    ConcurrentHashMap<String, Object> hashmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vido);
+
+        hashmap = new ConcurrentHashMap<>();
 
         //data
         data = new FireBaseData();
@@ -115,8 +122,10 @@ public class AddVideoActivity extends AppCompatActivity {
                 else{
                     //upload video function
                     uploadVideoFirebaseUser();
+
                     uploadVideoFirebaseCategories();
-                }            }
+                }
+            }
         });
 
 
@@ -151,12 +160,22 @@ public class AddVideoActivity extends AppCompatActivity {
                 downloadUri = uriTask.getResult();
                 if(uriTask.isSuccessful()){
                     //url of uploaded video is recieved
-
+                    hashmap.clear();
                     //now we can video details to our firebase
-                    HashMap<String, Object> hashmap = new HashMap<>();
                     hashmap.put("title", "" + title);
                     hashmap.put("timestamp", "" +timestamp);
                     hashmap.put("videoUrl","" + downloadUri);
+                    hashmap.put("ID" , ID);
+                    hashmap.put("Challenge",spinner_challenge );
+
+                    DatabaseReference Reff = FirebaseDatabase.getInstance().getReference("Categories");
+                    Reff.child(spinner_category).child("Videos").child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            System.out.println("Video succefull uploaded to Categories");
+
+                        }
+                    });
 
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -191,21 +210,7 @@ public class AddVideoActivity extends AppCompatActivity {
 
     // upload to realtime database in categories
     private void uploadVideoFirebaseCategories() {
-        HashMap<String, Object> hashmap = new HashMap<>();
-        hashmap.put("title", "" + title);
-        hashmap.put("timestamp", "" +timestamp);
-        hashmap.put("videoUrl","" + downloadUri);
-        hashmap.put("ID" , ID);
-        hashmap.put("Challenge",spinner_challenge );
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Categories");
-        reference.child(spinner_category).child("Videos").child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                System.out.println("Video succefull uploaded to Categories");
-
-            }
-        });
 
     }
 
