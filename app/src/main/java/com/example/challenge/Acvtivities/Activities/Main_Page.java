@@ -18,6 +18,8 @@ import com.example.challenge.Acvtivities.Challengs.Funny;
 import com.example.challenge.Acvtivities.Challengs.Scary;
 import com.example.challenge.Acvtivities.Challengs.new_challenge;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
+import com.example.challenge.Acvtivities.Videos.VideoActivity;
+import com.example.challenge.Acvtivities.Videos.VideoActivityChallenge;
 import com.example.challenge.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -85,36 +87,33 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-    if ( view == B_Challenge){
-        Intent intent = new Intent(Main_Page.this, new_challenge.class);
-        startActivity(intent);
-    }
-    else if (view == B_Family){
-            Intent intent = new Intent(Main_Page.this, Family.class);
+        if (view == B_Challenge) {
+            Intent intent = new Intent(Main_Page.this, new_challenge.class);
             startActivity(intent);
-        }
-    else if (view == B_Funny){
-        Intent intent = new Intent(Main_Page.this, Funny.class);
-        startActivity(intent);
-    }
-    else if (view == B_Scary){
-        Intent intent = new Intent(Main_Page.this, Scary.class);
-        startActivity(intent);
-    }
-    else if (view == B_Profile1){
-        Intent intent = new Intent(Main_Page.this, Profile.class);
-        startActivity(intent);
-    }
-    else if(view == LogOut){
+        } else if (view == B_Family) {
+            B_Family.getText().toString().trim();
+            Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
+            pro.putExtra("tyip", B_Family.getText().toString().trim());
+            startActivity(pro);
+        } else if (view == B_Funny) {
+            Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
+            pro.putExtra("tyip", B_Funny.getText().toString().trim());
+            startActivity(pro);
+        } else if (view == B_Scary) {
+            Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
+            pro.putExtra("tyip", B_Scary.getText().toString().trim());
+            startActivity(pro);
+        } else if (view == B_Profile1) {
+            Intent intent = new Intent(Main_Page.this, Profile.class);
+            startActivity(intent);
+        } else if (view == LogOut) {
             Logout(view);
-    }
-    else if (view == B_Admin){
-        Intent intent = new Intent(Main_Page.this, Admin.class);
-        startActivity(intent);
-    }
-    else if (b_search == view){
-        CheckifthereUser(view);
-    }
+        } else if (view == B_Admin) {
+            Intent intent = new Intent(Main_Page.this, Admin.class);
+            startActivity(intent);
+        } else if (b_search == view) {
+            CheckifthereUser(view);
+        }
     }
 
 
