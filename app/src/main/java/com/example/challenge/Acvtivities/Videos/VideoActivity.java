@@ -40,6 +40,7 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
+        System.out.println("i am in Users class");
         //data
         data = new FireBaseData();
         fAuth = data.getfAuth();

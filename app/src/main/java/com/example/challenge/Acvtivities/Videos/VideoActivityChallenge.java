@@ -32,15 +32,14 @@ public class VideoActivityChallenge extends AppCompatActivity implements View.On
     //adapter
     private AdapterVideo adapterVideo;
 
-    String typi;
-    ImageView P_Home;
+    String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_video_challenge);
 
-        P_Home = findViewById(R.id.P_home_Video_challenge);
-        P_Home.setOnClickListener(this);
+        System.out.println("i am in Challenge class");
+
 
         setTitle("Videos");
 
@@ -53,18 +52,15 @@ public class VideoActivityChallenge extends AppCompatActivity implements View.On
     //handle Click
     public void onClick(View v){
         // start activiy to add videos
-        if (P_Home == v) {
-            Intent in = new Intent(VideoActivityChallenge.this, Main_Page.class);
-            startActivity(in);
-        }
+
     }
 
     private void loadVideosFromFirebase() {
         videoArrayList = new ArrayList<>();
         Intent dataFromProfile = getIntent();
-        typi = dataFromProfile.getStringExtra("tyip");
-        if (!typi.isEmpty()) {
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categories").child(typi);
+        type = dataFromProfile.getStringExtra("type");
+        if (!type.isEmpty()) {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categories").child(type).child("Videos");
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

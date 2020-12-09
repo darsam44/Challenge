@@ -93,15 +93,15 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         } else if (view == B_Family) {
             B_Family.getText().toString().trim();
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
-            pro.putExtra("tyip", B_Family.getText().toString().trim());
+            pro.putExtra("type", B_Family.getText().toString().trim());
             startActivity(pro);
         } else if (view == B_Funny) {
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
-            pro.putExtra("tyip", B_Funny.getText().toString().trim());
+            pro.putExtra("type", B_Funny.getText().toString().trim());
             startActivity(pro);
         } else if (view == B_Scary) {
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
-            pro.putExtra("tyip", B_Scary.getText().toString().trim());
+            pro.putExtra("type", B_Scary.getText().toString().trim());
             startActivity(pro);
         } else if (view == B_Profile1) {
             Intent intent = new Intent(Main_Page.this, Profile.class);
