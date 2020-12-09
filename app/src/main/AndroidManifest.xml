@@ -14,12 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
+<<<<<<< HEAD
         <activity android:name=".Acvtivities.Videos.VideoActivityChallenge"></activity>
+=======
+        <activity android:name=".Acvtivities.Activities.Admin"></activity>
+>>>>>>> 912acff2c6a2efe9e2661504056cd907a9a55804
         <activity android:name=".Acvtivities.Activities.Other_user_profile" />
         <activity android:name=".Acvtivities.Activities.EditProfile" />
         <activity android:name=".Acvtivities.Videos.AddVideoActivity" />
         <activity android:name=".Acvtivities.Videos.VideoActivity" />
-        <activity android:name=".Acvtivities.Activities.Admin" />
+        <activity android:name=".Acvtivities.Activities.Admin1" />
         <activity android:name=".Acvtivities.Challengs.Family" />
         <activity android:name=".Acvtivities.Challengs.Scary" />
         <activity android:name=".Acvtivities.Challengs.Funny" />

@@ -59,7 +59,7 @@ public class VideoActivityChallenge extends AppCompatActivity implements View.On
         videoArrayList = new ArrayList<>();
         Intent dataFromProfile = getIntent();
         type = dataFromProfile.getStringExtra("type");
-        if (!type.isEmpty()) {
+
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categories").child(type).child("Videos");
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -83,5 +83,5 @@ public class VideoActivityChallenge extends AppCompatActivity implements View.On
             });
         }
 
-    }
+
 }
