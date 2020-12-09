@@ -7,6 +7,24 @@
     tools:context=".Acvtivities.Activities.EditProfile"
     android:background="@drawable/gradient_background">
 
+    <ImageView
+        android:id="@+id/BackHomeActivityEditProfile"
+        android:layout_width="47dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="663dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icons8_home_24"
+        android:clickable="true"/>
 
     <EditText
         android:id="@+id/LastName_p_Edit"

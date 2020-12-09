@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class Admin extends AppCompatActivity implements View.OnClickListener {
     Button newChallenge, newCategory;
+    ImageView BackHomeAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +19,10 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_admin);
         newChallenge = findViewById(R.id.newChallenge);
         newCategory = findViewById(R.id.newCategory);
-        newCategory.setOnClickListener((View.OnClickListener) this);
-        newChallenge.setOnClickListener((View.OnClickListener) this);
+        BackHomeAdmin =findViewById(R.id.BackHomeAdmin);
+        BackHomeAdmin.setOnClickListener(this);
+        newCategory.setOnClickListener( this);
+        newChallenge.setOnClickListener( this);
     }
 
     @Override
@@ -29,6 +33,10 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
         }
         else if (v == newChallenge){
             Intent intent = new Intent(Admin.this, NewChalengeOrCategory.class);
+            startActivity(intent);
+        }
+        else if (v == BackHomeAdmin){
+            Intent intent = new Intent(Admin.this, Main_Page.class);
             startActivity(intent);
         }
 

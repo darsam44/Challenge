@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
@@ -28,6 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener {
+
+    ImageView BackHomeActivityEditProfile;
     String ID;
     String First_Name;
     String Last_Name;
@@ -72,6 +75,9 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
 
         saveEdit.setOnClickListener(this);
 
+        BackHomeActivityEditProfile =findViewById(R.id.BackHomeActivityEditProfile);
+        BackHomeActivityEditProfile.setOnClickListener(this);
+
     }
 
     @Override
@@ -79,7 +85,10 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         if ( view == saveEdit){
         EditNameOnBAse(view);
         }
-
+        if (view == BackHomeActivityEditProfile){
+            Intent intent = new Intent(EditProfile.this, Main_Page.class);
+            startActivity(intent);
+        }
 
 
     }

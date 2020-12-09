@@ -10,27 +10,41 @@
 
     <Button
         android:id="@+id/new_challenge"
-        android:layout_width="83dp"
-        android:layout_height="52dp"
+        android:layout_width="222dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="85dp"
         android:text="new challenge"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintBottom_toTopOf="@+id/MoveToFamily"
+        app:layout_constraintEnd_toStartOf="@+id/singOut_mainpage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288" />
+        app:layout_constraintTop_toBottomOf="@+id/Edit_Search" />
 
     <Button
         android:id="@+id/MoveToFamily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="74dp"
-        android:layout_marginLeft="74dp"
-        android:layout_marginTop="317dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:text="Family"
+        app:layout_constraintBottom_toTopOf="@+id/MoveToFunny"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="313dp"
+        android:layout_height="82dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Challenge!"
+        android:textColor="#9C27B0"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -41,114 +55,116 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="73dp"
         android:layout_marginLeft="73dp"
+        android:layout_marginTop="318dp"
         android:text="Scarry"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MoveToFamily"
-        app:layout_constraintVertical_bias="0.21" />
+        app:layout_constraintTop_toBottomOf="@+id/MoveToFamily" />
 
     <Button
         android:id="@+id/MoveToFunny"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:text="Funny"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/MoveToFamily"
-        app:layout_constraintTop_toBottomOf="@+id/new_challenge"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/B_Profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="44dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-
-    <ImageView
-        android:id="@+id/singOut_mainpage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginRight="184dp"
-        android:layout_marginBottom="249dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/MoveToFamily"
-        app:layout_constraintEnd_toStartOf="@+id/new_challenge"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/B_toAdmin"
-        android:layout_width="36dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="259dp"
-        android:layout_marginLeft="259dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:layout_marginBottom="88dp"
+        android:layout_width="58dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="28dp"
         android:clickable="true"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/new_challenge"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/singOut_mainpage"
+        app:layout_constraintBottom_toTopOf="@+id/Edit_Search"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
-    <TextView
-        android:id="@+id/Search_User"
-        android:layout_width="124dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginTop="60dp"
-        android:text="Search Username:"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/singOut_mainpage" />
-
     <EditText
         android:id="@+id/Edit_Search"
-        android:layout_width="122dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginRight="132dp"
+        android:layout_width="150dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="272dp"
+        android:layout_marginRight="272dp"
+        android:hint="Search:"
         android:textColor="#673AB7"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Search_User"
-        app:layout_constraintTop_toBottomOf="@+id/B_Profile" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+<!--    <Button-->
+<!--        android:id="@+id/b_search"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:text="search"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/new_challenge"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/Edit_Search" />-->
+
+    <ImageButton
+        android:id="@+id/b_search"
+        android:layout_width="63dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginRight="188dp"
+        android:layout_marginBottom="546dp"
+        app:layout_constraintBottom_toTopOf="@+id/MoveToScarry"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Edit_Search"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icons8_search_client_80" />
 
     <Button
-        android:id="@+id/b_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="20dp"
-        android:text="search"
-        app:layout_constraintBottom_toTopOf="@+id/new_challenge"
+        android:id="@+id/B_Profile"
+        android:layout_width="146dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="26dp"
+        android:text="My Profile"
+        app:layout_constraintBottom_toTopOf="@+id/singOut_mainpage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Edit_Search" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/b_search"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/singOut_mainpage"
+        android:layout_width="127dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginBottom="487dp"
+        android:text="Log Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/new_challenge"
+        app:layout_constraintTop_toBottomOf="@+id/B_Profile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

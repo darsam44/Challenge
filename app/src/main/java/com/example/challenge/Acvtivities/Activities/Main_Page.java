@@ -47,10 +47,11 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     Button B_Funny;
     Button B_Family;
     Button B_Scary;
-    Button b_search;
-    ImageView LogOut;
+    Button B_Profile1;
+    Button LogOut;
+    ImageButton b_search;
     ImageView B_Admin;
-    ImageButton B_Profile1;
+
      
     @Override
     protected void onCreate(Bundle savedInstanceState) {

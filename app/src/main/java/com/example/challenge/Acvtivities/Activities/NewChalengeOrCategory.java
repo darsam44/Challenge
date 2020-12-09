@@ -3,6 +3,7 @@ package com.example.challenge.Acvtivities.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NewChalengeOrCategory extends AppCompatActivity implements View.OnClickListener {
-    ImageView plus_cat, plus_chal;
+    ImageView plus_cat, plus_chal,BackHomeNewChalengeOrCategory,BackAdmin;
     EditText edit_cat, edit_chal, info;
     String category, challenge, infoChallenge;
     ArrayList<String> SpinnerCategory;
@@ -37,7 +38,7 @@ public class NewChalengeOrCategory extends AppCompatActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin3);
+        setContentView(R.layout.new_chalenge_or_category);
         SpinnerCategory = new ArrayList<>();
         WhichCheckBox  = new ArrayList<>();
         checkBox1 = findViewById(R.id.checkBox1);
@@ -59,8 +60,11 @@ public class NewChalengeOrCategory extends AppCompatActivity implements View.OnC
         edit_cat = findViewById(R.id.edit_cat);
         plus_cat.setOnClickListener(this);
         plus_chal.setOnClickListener(this);
-    }
-
+        BackHomeNewChalengeOrCategory =findViewById(R.id.BackHomeNewChalengeOrCategory);
+        BackHomeNewChalengeOrCategory.setOnClickListener(this);
+        BackAdmin=findViewById(R.id.BackAdmin);
+        BackAdmin.setOnClickListener(this);
+}
 
 
     @Override
@@ -69,9 +73,16 @@ public class NewChalengeOrCategory extends AppCompatActivity implements View.OnC
             AddCategoryAsAdmin(v);
             SystemClock.sleep(2000);
             setTextForCheckboxes();
-//            startActivity(new Intent(Admin.this , Admin.class ));
         }
-        else if(v==plus_chal){
+        if (v == BackHomeNewChalengeOrCategory){
+            Intent intent = new Intent(NewChalengeOrCategory.this, Main_Page.class);
+            startActivity(intent);
+        }
+        if (v == BackAdmin) {
+            Intent intent = new Intent(NewChalengeOrCategory.this, Admin.class);
+            startActivity(intent);
+        }
+        if(v==plus_chal){
             AddChallengeAsAdmin();
         }
         if ( v == checkBox1){
@@ -94,6 +105,7 @@ public class NewChalengeOrCategory extends AppCompatActivity implements View.OnC
             if (checkBox5.isChecked()) WhichCheckBox.add(checkBox5.getText().toString().trim());
             else WhichCheckBox.remove(checkBox5.getText().toString().trim());
         }
+
     }
 
 
