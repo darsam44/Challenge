@@ -8,23 +8,24 @@
     android:background="@drawable/gradient_background"
     >
 
+
     <ImageView
         android:id="@+id/image_home_challenge"
         android:layout_width="48dp"
         android:layout_height="52dp"
         android:layout_marginStart="34dp"
         android:layout_marginLeft="34dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="329dp"
         android:layout_marginRight="329dp"
-        android:layout_marginBottom="640dp"
+        android:layout_marginBottom="21dp"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/home" />
-
 
     <Button
         android:id="@+id/addVido"
@@ -60,12 +61,12 @@
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="9dp"
         android:layout_marginEnd="102dp"
         android:layout_marginRight="102dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_home_challenge" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView7"
@@ -82,5 +83,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_home_challenge"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/T_info"
+        android:layout_width="368dp"
+        android:layout_height="217dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="2dp"
+        android:text="Info: "
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/addVido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

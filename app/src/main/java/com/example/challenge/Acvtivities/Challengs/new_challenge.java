@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.challenge.Acvtivities.Activities.Main_Page;
@@ -33,6 +34,7 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
     String info, spinner_category, spinner_challenge;
     ImageView home;
     Button addVideosBtu;
+    TextView T_info;
     Spinner spinner, spinner2;
     List<String> ChallengesByCategory;
     List<String> Categories;
@@ -48,6 +50,7 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
        reff = FirebaseDatabase.getInstance().getReference("Categories");
         home = findViewById(R.id.image_home_challenge);
         home.setOnClickListener(this);
+        T_info = findViewById(R.id.T_info);
         spinner = findViewById(R.id.spinner);
         spinner2 = findViewById(R.id.spinner2);
         Categories = new ArrayList<>();
@@ -98,8 +101,21 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                System.out.println("choose: " + parent.getItemAtPosition(i).toString());
                 spinner_challenge = parent.getItemAtPosition(i).toString();
+             reff.child(spinner_category).child("challenge").child(spinner_challenge).addValueEventListener(new ValueEventListener() {
+                  @Override
+                  public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String info = snapshot.getValue(String.class);
+                    T_info.setText("Info: " + info );
+                  }
+
+                  @Override
+                  public void onCancelled(@NonNull DatabaseError error) {
+
+                  }
+              });
+
+                T_info.setText("Info: " + info);
             }
 
             @Override
