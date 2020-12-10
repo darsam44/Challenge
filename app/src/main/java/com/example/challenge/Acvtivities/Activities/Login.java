@@ -27,7 +27,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login extends AppCompatActivity implements View.OnClickListener {
     FireBaseData data;
     Button regi;
-    Button MoveTo;
     Button Log;
     EditText mEmail, mPassword;
     TextView forgotPass;
@@ -44,8 +43,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         data = new FireBaseData();
         fAuth = data.getfAuth();
 
-        MoveTo = findViewById(R.id.MoveTo);
-        MoveTo.setOnClickListener(this);
+
         mEmail       =  (EditText) findViewById(R.id.EmailLogin);
         mPassword    =  (EditText)findViewById(R.id.PasswordLogin);
         regi = (Button) findViewById(R.id.b_registar);
@@ -77,10 +75,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         else if (view ==forgotPass){
             ResetYourPass(view);
-        }
-        else if(view == MoveTo){
-            Intent intent = new Intent(Login.this, Main_Page.class);
-            startActivity(intent);
         }
     }
 

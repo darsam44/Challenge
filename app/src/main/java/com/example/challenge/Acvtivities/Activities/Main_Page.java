@@ -26,9 +26,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Main_Page extends AppCompatActivity implements View.OnClickListener {
     FireBaseData data;
-    FirebaseFirestore fstore;
     FirebaseAuth fAuth;
-    DatabaseReference Reff;
+    DatabaseReference reference_Users;
+
 
     String ID;
     String First_Name;
@@ -56,7 +56,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
         //data
         data = new FireBaseData();
-        Reff = FirebaseDatabase.getInstance().getReference();
+        reference_Users = data.getReference_Users();
         fAuth = data.getfAuth();
 
 
@@ -148,7 +148,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
             return;
         }
 
-        Reff.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference_Users.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 boolean flag = false;
