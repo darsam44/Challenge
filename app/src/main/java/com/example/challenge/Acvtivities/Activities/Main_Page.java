@@ -9,16 +9,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.challenge.Acvtivities.Challengs.Family;
-import com.example.challenge.Acvtivities.Challengs.Funny;
-import com.example.challenge.Acvtivities.Challengs.Scary;
 import com.example.challenge.Acvtivities.Challengs.new_challenge;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
-import com.example.challenge.Acvtivities.Videos.VideoActivity;
 import com.example.challenge.Acvtivities.Videos.VideoActivityChallenge;
 import com.example.challenge.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,9 +42,10 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     Button B_Funny;
     Button B_Family;
     Button B_Scary;
+    Button B_Excited;
     Button B_Profile1;
     Button LogOut;
-    ImageButton b_search;
+    ImageView b_search;
     ImageView B_Admin;
 
      
@@ -73,6 +69,8 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         B_Funny.setOnClickListener(this);
         B_Family = (Button) findViewById(R.id.MoveToFamily);
         B_Family.setOnClickListener(this);
+        B_Excited = findViewById(R.id.MoveToExcited);
+        B_Excited.setOnClickListener(this);
         B_Scary = (Button) findViewById(R.id.MoveToScarry);
         B_Scary.setOnClickListener(this);
         B_Profile1 = findViewById(R.id.B_Profile);
@@ -104,10 +102,15 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
             pro.putExtra("type", B_Scary.getText().toString().trim());
             startActivity(pro);
-        } else if (view == B_Profile1) {
+        } else if (view == B_Excited) {
+            Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
+            pro.putExtra("type", B_Excited.getText().toString().trim());
+            startActivity(pro);
+        }
+        else if (view == B_Profile1) {
             Intent intent = new Intent(Main_Page.this, Profile.class);
             startActivity(intent);
-        } else if (view == LogOut) {
+        }else if (view == LogOut) {
             Logout(view);
         } else if (view == B_Admin) {
             Intent intent = new Intent(Main_Page.this, Admin.class);

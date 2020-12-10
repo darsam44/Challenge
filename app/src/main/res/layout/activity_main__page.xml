@@ -10,27 +10,64 @@
 
     <Button
         android:id="@+id/new_challenge"
-        android:layout_width="222dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
+        android:layout_width="409dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
         android:layout_marginBottom="85dp"
-        android:text="new challenge"
+        android:text="Make A New Challenge"
+        app:backgroundTint="#FA2196F3"
         app:layout_constraintBottom_toTopOf="@+id/MoveToFamily"
-        app:layout_constraintEnd_toStartOf="@+id/singOut_mainpage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Edit_Search" />
+        app:layout_constraintTop_toBottomOf="@+id/Edit_Search"
+        app:layout_constraintVertical_bias="0.117" />
 
     <Button
         android:id="@+id/MoveToFamily"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="192dp"
+        android:layout_height="198dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="36dp"
         android:text="Family"
-        app:layout_constraintBottom_toTopOf="@+id/MoveToFunny"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_challenge" />
+
+    <Button
+        android:id="@+id/MoveToScarry"
+        android:layout_width="192dp"
+        android:layout_height="198dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:text="scary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/MoveToFamily"
+        app:layout_constraintTop_toBottomOf="@+id/new_challenge" />
+
+    <Button
+        android:id="@+id/MoveToExcited"
+        android:layout_width="192dp"
+        android:layout_height="198dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:text="Excited"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintStart_toEndOf="@+id/MoveToFunny"
+        app:layout_constraintTop_toBottomOf="@+id/MoveToScarry"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -50,26 +87,17 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/MoveToScarry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
-        android:layout_marginLeft="73dp"
-        android:layout_marginTop="318dp"
-        android:text="Scarry"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.223"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MoveToFamily" />
-
-    <Button
         android:id="@+id/MoveToFunny"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="192dp"
+        android:layout_height="198dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Funny"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MoveToFamily"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/B_toAdmin"
@@ -117,54 +145,47 @@
 <!--        app:layout_constraintHorizontal_bias="0.0"-->
 <!--        app:layout_constraintStart_toEndOf="@+id/Edit_Search" />-->
 
-    <ImageButton
-        android:id="@+id/b_search"
-        android:layout_width="63dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
-        android:layout_marginBottom="546dp"
-        app:layout_constraintBottom_toTopOf="@+id/MoveToScarry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/Edit_Search"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/icons8_search_client_80" />
-
     <Button
         android:id="@+id/B_Profile"
-        android:layout_width="146dp"
-        android:layout_height="52dp"
+        android:layout_width="135dp"
+        android:layout_height="41dp"
         android:layout_marginStart="21dp"
         android:layout_marginLeft="21dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:clickable="true"
         android:text="My Profile"
+        app:backgroundTint="#673AB7"
         app:layout_constraintBottom_toTopOf="@+id/singOut_mainpage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/b_search"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/singOut_mainpage"
-        android:layout_width="127dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginBottom="487dp"
+        android:layout_width="136dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="21dp"
         android:text="Log Out"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="#673AB7"
+        app:layout_constraintBottom_toTopOf="@+id/new_challenge"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/new_challenge"
+        app:layout_constraintStart_toEndOf="@+id/b_search"
         app:layout_constraintTop_toBottomOf="@+id/B_Profile" />
+
+    <ImageView
+        android:id="@+id/b_search"
+        android:layout_width="72dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/new_challenge"
+        app:layout_constraintStart_toEndOf="@+id/Edit_Search"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/icons8_search_client_80" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
