@@ -103,33 +103,36 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         Phone    = mPhone.getText().toString();
         User_Name = mUserName.getText().toString();
 
-
+    boolean flag = true;
         if(TextUtils.isEmpty(Email)){
             mEmail.setError("Email is Required.");
-            return;
+            flag = false;
         }
         if(TextUtils.isEmpty(Last_Name)){
             mLastName.setError("LastName is Required.");
-            return;
+            flag = false;
         }
         if(TextUtils.isEmpty(First_Name)){
             mFirstName.setError("FirstName is Required.");
-            return;
+            flag = false;
         }
         if(TextUtils.isEmpty(User_Name)){
             mUserName.setError("UserName is Required.");
-            return;
+            flag = false;
         }
         if(TextUtils.isEmpty(Phone)){
             mPhone.setError("Phone is Required.");
-            return;
+            flag = false;
         }
         if(TextUtils.isEmpty(Password)){
             mPassword.setError("Password is Required.");
-            return;
+            flag = false;
         }
         if(Password.length() < 6){
             mPassword.setError("Password Must be >= 6 Characters");
+            flag = false;
+        }
+        if ( !flag){
             return;
         }
 
@@ -137,9 +140,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         userNameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int temp = (int) snapshot.getChildrenCount();
             if ( snapshot.getChildrenCount() >0){
-                Toast.makeText(Register.this , "Choose a diffrent username" , Toast.LENGTH_LONG).show();
+                Toast.makeText(Register.this , "Choose a diffrent username already exist" , Toast.LENGTH_LONG).show();
             }
             else{
                 fAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
