@@ -1,20 +1,32 @@
 package com.example.challenge.Acvtivities.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.Acvtivities.Videos.VideoActivity;
 import com.example.challenge.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -26,6 +38,7 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
     String User_Name;
     String Email;
     String Phone;
+    String IsAdmin;
 
     //data
     FireBaseData data;
@@ -36,6 +49,7 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
     ImageView Profile_images, Home_Other;
 
     Button Video_Other_user_profile;
+    CheckBox Check_IsAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +68,10 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         // Video_Other_user_profile//
         Video_Other_user_profile=findViewById(R.id.Video_Other_user_profile);
         Video_Other_user_profile.setOnClickListener(this);
+        Check_IsAdmin = findViewById(R.id.Check_IsAdmin);
+
+
+
 
 
         Intent dataFromProfile = getIntent();
@@ -63,6 +81,12 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         User_Name =dataFromProfile.getStringExtra("User_Name");
         Email =dataFromProfile.getStringExtra("Email");
         Phone =dataFromProfile.getStringExtra("Phone");
+        IsAdmin = dataFromProfile.getStringExtra("IsAdmin");
+        if (IsAdmin.equals("yes")){
+            Check_IsAdmin.setChecked(true);
+        }
+        Check_IsAdmin.setOnClickListener(this);
+
 
         T_first = findViewById(R.id.O_FirstName_p);
         T_last = findViewById(R.id.O_LastName_p);
@@ -76,7 +100,10 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         T_user_name.setText(User_Name);
         T_Phone.setText(Phone);
         LoadImageProfile();
+        CheckIfAdmin();
     }
+
+
 
     @Override
     public void onClick(View view) {
@@ -89,6 +116,29 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
             pro.putExtra("ID" , ID);
             startActivity(pro);
         }
+        else if (view == Check_IsAdmin){
+         setAdmin();
+        }
+    }
+
+    private void setAdmin() {
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID);
+        if (Check_IsAdmin.isChecked() ){
+            reff.child("IsAdmin").setValue("yes").addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(Other_user_profile.this , "this Profile is admin now" , Toast.LENGTH_LONG).show();
+                }
+            });
+       }
+       else {
+            reff.child("IsAdmin").setValue("no").addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(Other_user_profile.this , "this Profile is not admin anymore" , Toast.LENGTH_LONG).show();
+                }
+            });
+       }
     }
 
     // Load image from firebase to the imageview
@@ -98,6 +148,27 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).into(Profile_images);
+            }
+        });
+    }
+
+    private void CheckIfAdmin() {
+        String Cur_ID = fAuth.getCurrentUser().getUid();
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(Cur_ID);
+        reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child("IsAdmin").getValue() != null){
+                    String flag = snapshot.child("IsAdmin").getValue().toString();
+
+                    if ( flag.compareTo("yes") == 0){
+                        Check_IsAdmin.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

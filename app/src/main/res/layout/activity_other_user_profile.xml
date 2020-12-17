@@ -186,15 +186,29 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="133dp"
         android:layout_marginLeft="133dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="185dp"
         android:layout_marginRight="185dp"
-        android:layout_marginBottom="152dp"
         android:text="Video_profile"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/O_Phone" />
+
+    <CheckBox
+        android:id="@+id/Check_IsAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="172dp"
+        android:layout_marginRight="172dp"
+        android:layout_marginBottom="66dp"
+        android:text="is Admin?"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Video_Other_user_profile"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

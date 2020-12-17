@@ -36,6 +36,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     String User_Name;
     String Email;
     String Phone;
+    String IsAdmin;
 
     EditText Edit_Search;
     Button B_Challenge;
@@ -82,15 +83,6 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
 
         CheckIfAdmin();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(fAuth.getCurrentUser()== null){
-            startActivity(new Intent(getApplicationContext(), Login.class)  );
-            finish();
-        }
     }
 
     @Override
@@ -177,6 +169,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
                   User_Name = snapshot.child("User_Name").getValue(String.class);
                   Email = snapshot.child("Email").getValue(String.class);
                   Phone = snapshot.child("Phone").getValue(String.class);
+                  IsAdmin = snapshot.child("IsAdmin").getValue(String.class);
 
                   if ( User_Name.equals(User_Name_Search) ){
                       flag = true;
@@ -187,6 +180,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
                       pro.putExtra("Email", Email);
                       pro.putExtra("User_Name", User_Name);
                       pro.putExtra("Phone", Phone);
+                      pro.putExtra("IsAdmin" , IsAdmin);
                       startActivity(pro);
                   }
               }
