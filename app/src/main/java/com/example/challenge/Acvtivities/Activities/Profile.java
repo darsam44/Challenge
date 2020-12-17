@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,8 +19,10 @@ import android.widget.Toast;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.Acvtivities.Videos.VideoActivity;
 import com.example.challenge.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,6 +54,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose , Edit_Text;
     Button Video_Profole;
+    Button B_DelteProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +86,14 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         UserName_t = findViewById(R.id.UserName_p);
         Edit_Text = findViewById(R.id.b_EditText);
         Edit_Text.setOnClickListener(this);
+        B_DelteProfile = findViewById(R.id.b_delete);
+        B_DelteProfile.setOnClickListener(this);
 
         ID = Fauf.getCurrentUser().getUid();
         LoadImageProfile();
         ShowAllRefernce();
 
     }
-
-
 
 
     @Override
@@ -107,6 +112,45 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         else if (view == Video_Profole){
             startActivity(new Intent(Profile.this, VideoActivity.class));
         }
+        else if ( B_DelteProfile == view){
+            Delete_Profile(view);
+        }
+    }
+
+    private void Delete_Profile(View view) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(Profile.this);
+        dialog.setTitle("Are you sure you want to delete your profile?");
+        dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users");
+                reff.child(ID).removeValue();
+                Fauf.getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(Profile.this , "this Profile is delete" , Toast.LENGTH_LONG).show();
+                    //Fauf.signOut();
+                    //startActivity(new Intent(getApplicationContext() , Login.class));
+                    //finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Profile.this , "this Profile is not delete" , Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+        dialog.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = dialog.create();
+        alertDialog.show();
+
     }
 
     private void ShowAllRefernce() {

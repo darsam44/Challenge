@@ -85,6 +85,15 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if(fAuth.getCurrentUser()== null){
+            startActivity(new Intent(getApplicationContext(), Login.class)  );
+            finish();
+        }
+    }
+
+    @Override
     public void onClick(View view) {
         if (view == B_Challenge) {
             Intent intent = new Intent(Main_Page.this, new_challenge.class);
@@ -111,7 +120,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
             Intent intent = new Intent(Main_Page.this, Profile.class);
             startActivity(intent);
         }else if (view == LogOut) {
-            Logout(view);
+            Logout();
         } else if (view == B_Admin) {
             Intent intent = new Intent(Main_Page.this, Admin.class);
             startActivity(intent);
@@ -123,16 +132,25 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
     private void CheckIfAdmin() {
         ID = fAuth.getCurrentUser().getUid();
+        if ( ID == null){
+            Logout();
+        }
         DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID);
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String flag = snapshot.child("IsAdmin").getValue().toString();
+                if (snapshot.child("IsAdmin").getValue() != null){
+                    String flag = snapshot.child("IsAdmin").getValue().toString();
 
-                if ( flag.compareTo("yes") == 0){
-                    B_Admin.setVisibility(View.VISIBLE);
-                    //Toast.makeText(Main_Page.this, "" + flag, Toast.LENGTH_SHORT).show();
+                    if ( flag.compareTo("yes") == 0){
+                        B_Admin.setVisibility(View.VISIBLE);
+                        //Toast.makeText(Main_Page.this, "" + flag, Toast.LENGTH_SHORT).show();
+                    }
                 }
+                else {
+                    Logout();
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -186,7 +204,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
     }
 
-    public void Logout(View view){
+    public void Logout(){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext() , Login.class));
         finish();
