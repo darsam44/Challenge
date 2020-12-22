@@ -8,6 +8,20 @@
     android:background="@drawable/gradient_background">
 
 
+    <Button
+        android:id="@+id/add_friend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginLeft="43dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
+        android:text="Add Friend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Video_Other_user_profile"
+        app:layout_constraintTop_toBottomOf="@+id/O_Phone_p" />
+
     <TextView
         android:id="@+id/O_Email"
         android:layout_width="120dp"
@@ -184,14 +198,14 @@
         android:id="@+id/Video_Other_user_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="133dp"
-        android:layout_marginLeft="133dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="185dp"
         android:layout_marginRight="185dp"
         android:text="Video_profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/O_Phone" />
 

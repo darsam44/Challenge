@@ -32,6 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class Other_user_profile extends AppCompatActivity implements View.OnClickListener {
+    //String ID_search;
     String ID;
     String First_Name;
     String Last_Name;
@@ -48,7 +49,7 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
     TextView T_first, T_last , T_Email , T_Phone , T_user_name;
     ImageView Profile_images, Home_Other;
 
-    Button Video_Other_user_profile;
+    Button Video_Other_user_profile,add_friend;
     CheckBox Check_IsAdmin;
 
     @Override
@@ -68,6 +69,8 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         // Video_Other_user_profile//
         Video_Other_user_profile=findViewById(R.id.Video_Other_user_profile);
         Video_Other_user_profile.setOnClickListener(this);
+        add_friend=findViewById(R.id.add_friend);
+        add_friend.setOnClickListener(this);
         Check_IsAdmin = findViewById(R.id.Check_IsAdmin);
 
 
@@ -75,6 +78,7 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
 
 
         Intent dataFromProfile = getIntent();
+        //ID_search = dataFromProfile.getStringExtra("ID_search");
         ID = dataFromProfile.getStringExtra("ID");
         First_Name =dataFromProfile.getStringExtra("First_Name");
         Last_Name =dataFromProfile.getStringExtra("Last_Name");
@@ -107,17 +111,19 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        if (view == Home_Other){
-            Intent in = new Intent(Other_user_profile.this , Main_Page.class);
+        if (view == Home_Other) {
+            Intent in = new Intent(Other_user_profile.this, Main_Page.class);
             startActivity(in);
-        }
-        else if (view ==Video_Other_user_profile ){
-            Intent pro = new Intent(view.getContext() , VideoActivity.class);
-            pro.putExtra("ID" , ID);
+        } else if (view == Video_Other_user_profile) {
+            Intent pro = new Intent(view.getContext(), VideoActivity.class);
+            pro.putExtra("ID", ID);
             startActivity(pro);
+        } else if (view == Check_IsAdmin) {
+            setAdmin();
         }
-        else if (view == Check_IsAdmin){
-         setAdmin();
+        if (view == add_friend) {
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+            reference.child(fAuth.getCurrentUser().getUid()).child("friend").child(ID).setValue(First_Name+Last_Name);
         }
     }
 
