@@ -2,5 +2,8 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/aclonica</item>
+        <item>@font/alegreya_sc</item>
+        <item>@font/cantora_one</item>
+        <item>@font/comfortaa_bold</item>
     </array>
 </resources>

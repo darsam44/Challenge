@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Acvtivities.Activities.NewChalengeOrCategory"
+    tools:context=".Acvtivities.Activities.AddCategory"
     android:background="@drawable/gradient_background">
-
 
 
     <CheckBox
@@ -18,6 +17,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="21dp"
         android:layout_marginRight="21dp"
+        android:fontFamily="@font/cantora_one"
         android:text="CheckBox"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/checkBox4"
@@ -30,65 +30,79 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="21dp"
         android:layout_marginRight="21dp"
-        android:text="CheckBox"
+        android:layout_marginBottom="10dp"
 
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
         android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
         app:layout_constraintEnd_toStartOf="@+id/checkBox5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="98dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="92dp"
-        android:text="Add challange"
+        android:layout_width="258dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Add Challange"
+        android:textColor="#9C27B0"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.601"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="99dp"
+        android:layout_width="106dp"
         android:layout_height="35dp"
         android:clickable="true"
-        android:text="The Challange "
+        android:fontFamily="@font/cantora_one"
+        android:text="Your Challange: "
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/edit_chal"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.255" />
+        app:layout_constraintVertical_bias="0.182" />
 
     <EditText
         android:id="@+id/edit_chal"
         android:layout_width="208dp"
         android:layout_height="133dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
         android:ems="10"
+        android:fontFamily="@font/cantora_one"
         android:hint="write your challange!"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="25dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="273dp"
         android:layout_marginRight="273dp"
+        android:fontFamily="@font/cantora_one"
         android:text="Choose Categories:"
+        android:textColor="#000000"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_chal" />
 
@@ -98,12 +112,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="297dp"
         android:layout_marginRight="297dp"
+        android:fontFamily="@font/cantora_one"
         android:text="CheckBox"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
@@ -112,88 +128,94 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="114dp"
-        android:layout_marginRight="114dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
+        android:fontFamily="@font/cantora_one"
         android:text="CheckBox"
         android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/plus_chal"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+
     <CheckBox
         android:id="@+id/checkBox5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="182dp"
-        android:layout_marginRight="182dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginRight="180dp"
+        android:fontFamily="@font/cantora_one"
         android:text="CheckBox"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
 
-
     <EditText
         android:id="@+id/info"
-        android:layout_width="308dp"
-        android:layout_height="153dp"
-        android:layout_marginBottom="44dp"
+        android:layout_width="353dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="100dp"
         android:ems="10"
+        android:fontFamily="@font/cantora_one"
         android:hint="Write a short text that explain what to do "
         android:inputType="textPersonName"
+        android:lineSpacingExtra="8sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintHorizontal_bias="0.275"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/plus_chal"
-        android:layout_width="19dp"
-        android:layout_height="20dp"
+        android:layout_width="45dp"
+        android:layout_height="35dp"
         android:layout_marginStart="215dp"
         android:layout_marginLeft="215dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edit_chal"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.842"
+        app:layout_constraintVertical_bias="0.948"
         app:srcCompat="@drawable/plus_icon" />
 
     <ImageView
         android:id="@+id/BackHomeFromAddChallenge"
-        android:layout_width="47dp"
-        android:layout_height="52dp"
+        android:layout_width="32dp"
+        android:layout_height="37dp"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
         android:layout_marginBottom="663dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/icons8_home_24"
-        android:clickable="true"/>
+        app:srcCompat="@drawable/icons8_home_24" />
 
     <ImageView
         android:id="@+id/BackAdminFromAddChallenge"
-        android:layout_width="50dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="70dp"
         android:layout_marginRight="70dp"
         android:layout_marginBottom="38dp"
+        android:clickable="true"
         android:src="?attr/homeAsUpIndicator"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

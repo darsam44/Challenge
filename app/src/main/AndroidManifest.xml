@@ -24,7 +24,7 @@
         <activity android:name=".Acvtivities.Activities.EditProfile" />
         <activity android:name=".Acvtivities.Videos.AddVideoActivity" />
         <activity android:name=".Acvtivities.Videos.VideoActivity" />
-        <activity android:name=".Acvtivities.Activities.NewChalengeOrCategory" />
+        <activity android:name=".Acvtivities.Activities.AddCategory" />
         <activity android:name=".Acvtivities.Challengs.Family" />
         <activity android:name=".Acvtivities.Challengs.Scary" />
         <activity android:name=".Acvtivities.Challengs.Funny" />
