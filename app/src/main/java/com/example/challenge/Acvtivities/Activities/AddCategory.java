@@ -147,7 +147,6 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
         }
         if ( WhichCheckBox.isEmpty()){
             Toast.makeText(AddCategory.this, "You Must Fill At Least One Challenge", Toast.LENGTH_SHORT).show();
-           ///////------------
             return;
         }
         Query categoryQuery = FirebaseDatabase.getInstance().getReference().child("Categories").equalTo(category);
@@ -183,7 +182,7 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
 
                     Map<String, Object> Cat = new HashMap<>();
                     for (int i=0 ; i<WhichCheckBox.size();i++)
-                    Cat.put(WhichCheckBox.get(i) , WhichCheckBox.get(i) );
+                    Cat.put(WhichCheckBox.get(i) , ChallengeSpinnerData.get(WhichCheckBox.get(i)) );
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Categories");
                     reference.child(category).setValue(Cat).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
