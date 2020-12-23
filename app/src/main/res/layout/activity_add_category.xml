@@ -8,6 +8,90 @@
     android:background="@drawable/gradient_background">
 
 
+    <CheckBox
+        android:id="@+id/checkBox66"
+        android:layout_width="197dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <CheckBox
+        android:id="@+id/checkBox10"
+        android:layout_width="193dp"
+        android:layout_height="66dp"
+
+        android:layout_marginStart="220dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox88"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
+
+    <CheckBox
+        android:id="@+id/checkBox88"
+        android:layout_width="191dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="7dp"
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox99"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox22" />
+
+    <CheckBox
+        android:id="@+id/checkBox44"
+        android:layout_width="189dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox99"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox33" />
+
+    <CheckBox
+        android:id="@+id/checkBox77"
+        android:layout_width="176dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="53dp"
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/plus_cat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.765"
+        app:layout_constraintStart_toEndOf="@+id/checkBox55"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox44" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="155dp"
@@ -129,77 +213,81 @@
 
 
     <CheckBox
-        android:id="@+id/checkBox11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginRight="26dp"
+        android:id="@+id/checkBox55"
+        android:layout_width="176dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginRight="63dp"
+        android:layout_marginBottom="53dp"
         android:fontFamily="@font/cantora_one"
         android:text="CheckBox"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox22"
-        app:layout_constraintHorizontal_bias="0.638"
+        app:layout_constraintBottom_toTopOf="@+id/plus_cat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox99"
+        app:layout_constraintVertical_bias="0.046" />
 
     <CheckBox
         android:id="@+id/checkBox22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginLeft="192dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="21dp"
+        android:layout_width="193dp"
+        android:layout_height="66dp"
 
-        android:layout_marginRight="21dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/cantora_one"
         android:text="CheckBox"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <CheckBox
-        android:id="@+id/checkBox33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/cantora_one"
-        android:text="CheckBox"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
 
     <CheckBox
-        android:id="@+id/checkBox44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="147dp"
-        android:layout_marginLeft="147dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginRight="128dp"
-        android:fontFamily="@font/cantora_one"
-        android:text="CheckBox"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/checkBox33"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox22" />
-
-    <CheckBox
-        android:id="@+id/checkBox55"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/checkBox11"
+        android:layout_width="197dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/cantora_one"
         android:text="CheckBox"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox33" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <CheckBox
+        android:id="@+id/checkBox99"
+        android:layout_width="189dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="9dp"
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox77"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBox44"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox88" />
+
+    <CheckBox
+        android:id="@+id/checkBox33"
+        android:layout_width="191dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/cantora_one"
+        android:text="CheckBox"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox22" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
