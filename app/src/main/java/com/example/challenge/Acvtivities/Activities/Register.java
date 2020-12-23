@@ -188,7 +188,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             }
         });
 
-        //register the user in firebase
 
 
     }
