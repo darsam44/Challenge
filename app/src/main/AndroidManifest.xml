@@ -14,9 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Challenge">
-
-        <activity android:name=".Acvtivities.Videos.VideoActivityChallenge"></activity>
-        <activity android:name=".Acvtivities.Activities.Admin"></activity>
+        <activity android:name=".Acvtivities.Activities._Friend"></activity>
+        <activity android:name=".Acvtivities.Videos.VideoActivityChallenge" />
+        <activity android:name=".Acvtivities.Activities.Admin" />
         <activity android:name=".Acvtivities.Activities.Other_user_profile" />
         <activity android:name=".Acvtivities.Activities.EditProfile" />
         <activity android:name=".Acvtivities.Videos.AddVideoActivity" />

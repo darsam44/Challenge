@@ -32,7 +32,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class Other_user_profile extends AppCompatActivity implements View.OnClickListener {
-    //String ID_search;
+    String ID_search;
     String ID;
     String First_Name;
     String Last_Name;
@@ -75,11 +75,10 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
 
 
 
-
+        ID = data.GetcurrentID();
 
         Intent dataFromProfile = getIntent();
-        //ID_search = dataFromProfile.getStringExtra("ID_search");
-        ID = dataFromProfile.getStringExtra("ID");
+        ID_search = dataFromProfile.getStringExtra("ID");
         First_Name =dataFromProfile.getStringExtra("First_Name");
         Last_Name =dataFromProfile.getStringExtra("Last_Name");
         User_Name =dataFromProfile.getStringExtra("User_Name");
@@ -116,19 +115,23 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
             startActivity(in);
         } else if (view == Video_Other_user_profile) {
             Intent pro = new Intent(view.getContext(), VideoActivity.class);
-            pro.putExtra("ID", ID);
+            pro.putExtra("ID", ID_search);
             startActivity(pro);
         } else if (view == Check_IsAdmin) {
             setAdmin();
         }
         if (view == add_friend) {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-            reference.child(fAuth.getCurrentUser().getUid()).child("friend").child(ID).setValue(First_Name+Last_Name);
+            AddFriend();
         }
     }
 
+    private void AddFriend() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(ID).child("friend").child(ID_search).setValue(User_Name+":"+First_Name+" "+Last_Name);
+    }
+
     private void setAdmin() {
-        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID);
+        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(ID_search);
         if (Check_IsAdmin.isChecked() ){
             reff.child("IsAdmin").setValue("yes").addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -149,7 +152,7 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
 
     // Load image from firebase to the imageview
     private void LoadImageProfile() {
-        StorageReference profileRef = storageReference.child("Users/"+ID+"profile.jpg");
+        StorageReference profileRef = storageReference.child("Users/"+ID_search+"profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
