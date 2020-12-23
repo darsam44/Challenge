@@ -10,10 +10,10 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Challenge">
+        android:theme="@style/Theme.Challenge.NoActionBar">
 
 
         <activity
@@ -22,7 +22,6 @@
             android:theme="@style/Theme.Challenge.NoActionBar"></activity>
 
         <activity android:name=".Acvtivities.Activities._Friend"></activity>
-
         <activity android:name=".Acvtivities.Videos.VideoActivityChallenge" />
         <activity android:name=".Acvtivities.Activities.Admin" />
         <activity android:name=".Acvtivities.Activities.Other_user_profile" />
