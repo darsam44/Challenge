@@ -19,6 +19,19 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- style of the menu bar -->
+    <style name="CustomToolbarStayle" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">-4dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/purple_700</item>
+        ></style>
+
+    <!-- style of the popout menu bar -->
+    <style name="CustomPopoutStayle" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:background">@drawable/gradient_background</item>
+        ></style>
+
     <style name="Theme.Challenge.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Challenge.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

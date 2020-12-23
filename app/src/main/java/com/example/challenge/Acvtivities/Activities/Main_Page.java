@@ -3,14 +3,19 @@ package com.example.challenge.Acvtivities.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.challenge.Acvtivities.Challengs.new_challenge;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
@@ -22,7 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class Main_Page extends AppCompatActivity implements View.OnClickListener {
     FireBaseData data;
@@ -81,8 +86,38 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         B_Admin = findViewById(R.id.B_toAdmin);
         B_Admin.setOnClickListener(this);
 
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
         CheckIfAdmin();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.I_Logout: Logout();
+            return true;
+            case R.id.I_My_Profile:{
+                Intent intent = new Intent(Main_Page.this, Profile.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Friends:{
+                Intent intent = new Intent(Main_Page.this, _Friend.class);
+                startActivity(intent);
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
     }
 
     @Override
