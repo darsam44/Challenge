@@ -28,7 +28,7 @@ public class Admin extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v == newCategory){
-            Intent intent = new Intent(Admin.this, NewChalengeOrCategory.class);
+            Intent intent = new Intent(Admin.this, AddCategory.class);
             startActivity(intent);
         }
         else if (v == newChallenge){
