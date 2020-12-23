@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -52,6 +53,10 @@ public class _Friend extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds: snapshot.getChildren()) {
                     //get data
+                    if ( ds.child("ID_User").getValue() == null){
+                    Toast.makeText(_Friend.this , " You dont have any Friends in your List" , Toast.LENGTH_LONG).show();
+                    return;
+                    }
                     ID_User = ds.child("ID_User").getValue().toString();
                     User_Name = ds.child("User_Name").getValue().toString();
                     First_Name = ds.child("First_Name").getValue().toString();

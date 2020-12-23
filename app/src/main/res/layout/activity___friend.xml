@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Acvtivities.Activities._Friend">
+    tools:context=".Acvtivities.Activities._Friend"
+    android:background="@drawable/gradient_background"
+    >
 
     <ListView
         android:id="@+id/List_Friend2"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="match_parent" />
+
 </RelativeLayout>
