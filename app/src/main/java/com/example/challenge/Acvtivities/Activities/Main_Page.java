@@ -49,8 +49,6 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     Button B_Family;
     Button B_Scary;
     Button B_Excited;
-    Button B_Profile1;
-    Button LogOut;
     ImageView b_search;
     ImageView B_Admin;
 
@@ -79,10 +77,6 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         B_Excited.setOnClickListener(this);
         B_Scary = (Button) findViewById(R.id.MoveToScarry);
         B_Scary.setOnClickListener(this);
-        B_Profile1 = findViewById(R.id.B_Profile);
-        B_Profile1.setOnClickListener(this);
-        LogOut = findViewById(R.id.singOut_mainpage);
-        LogOut.setOnClickListener(this);
         B_Admin = findViewById(R.id.B_toAdmin);
         B_Admin.setOnClickListener(this);
 
@@ -143,12 +137,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
             pro.putExtra("type", B_Excited.getText().toString().trim());
             startActivity(pro);
         }
-        else if (view == B_Profile1) {
-            Intent intent = new Intent(Main_Page.this, Profile.class);
-            startActivity(intent);
-        }else if (view == LogOut) {
-            Logout();
-        } else if (view == B_Admin) {
+        else if (view == B_Admin) {
             Intent intent = new Intent(Main_Page.this, Admin.class);
             startActivity(intent);
         } else if (b_search == view) {

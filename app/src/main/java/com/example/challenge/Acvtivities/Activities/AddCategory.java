@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
@@ -31,7 +30,7 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
     ImageView plus_cat, BackHomeFromAddCategory, BackAdminFromAddCategory;
     EditText edit_cat;
     String category;
-    ArrayList<String> SpinnerCategory, ChallengeSpinner;
+    ArrayList<String>  ChallengeSpinner;
     HashMap<String, String> ChallengeSpinnerData;
     ArrayList<String> WhichCheckBox;
     CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8, checkBox9, checkBox10;
@@ -48,7 +47,6 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
         BackHomeFromAddCategory.setOnClickListener(this);
         BackAdminFromAddCategory = findViewById(R.id.BackAdminFromAddCategory);
         BackAdminFromAddCategory.setOnClickListener(this);
-        SpinnerCategory = new ArrayList<>();
         ChallengeSpinner = new ArrayList<>();
         ChallengeSpinnerData = new HashMap<>();
         WhichCheckBox = new ArrayList<>();
@@ -156,7 +154,6 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
                     reference.child(category).child("challenge").setValue(Cat).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-//                            edit_chal.setText("");
                             Toast.makeText(AddCategory.this, "Category Successfully Added", Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -177,7 +174,6 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
     }
 
     private void setTextForCheckboxes() {
-        SpinnerCategory.clear();
         ChallengeSpinner.clear();
         ChallengeSpinnerData.clear();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Categories");
@@ -185,9 +181,6 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 for (DataSnapshot snapshot : datasnapshot.getChildren()) {
-                    String s = snapshot.getKey();
-                    s = "Categories/" + s;
-                    SpinnerCategory.add(s);
                     for (DataSnapshot ds : snapshot.child("challenge").getChildren()) {
                         //get data
                         if (!ChallengeSpinner.contains(ds.getKey())) {
@@ -197,64 +190,7 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
                     }
                 }
 
-                if (!ChallengeSpinner.isEmpty()) {
-                    for (int i = 0; i < ChallengeSpinner.size(); i++) {
-                        switch (i) {
-                            case 0: {
-                                checkBox1.setVisibility(View.VISIBLE);
-                                checkBox1.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 1: {
-                                checkBox2.setVisibility(View.VISIBLE);
-                                checkBox2.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 2: {
-                                checkBox3.setVisibility(View.VISIBLE);
-                                checkBox3.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 3: {
-                                checkBox4.setVisibility(View.VISIBLE);
-                                checkBox4.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 4: {
-                                checkBox5.setVisibility(View.VISIBLE);
-                                checkBox5.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 5: {
-                                checkBox6.setVisibility(View.VISIBLE);
-                                checkBox6.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 6: {
-                                checkBox7.setVisibility(View.VISIBLE);
-                                checkBox7.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 7: {
-                                checkBox8.setVisibility(View.VISIBLE);
-                                checkBox8.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 8: {
-                                checkBox9.setVisibility(View.VISIBLE);
-                                checkBox9.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            case 9: {
-                                checkBox10.setVisibility(View.VISIBLE);
-                                checkBox10.setText(ChallengeSpinner.get(i));
-                            }
-                            break;
-                            default:
-                                break;
-                        }
-                    }
-                }
+                addTextToCheckBox();
             }
 
             @Override
@@ -262,5 +198,66 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+    }
+
+    private void addTextToCheckBox() {
+        if (!ChallengeSpinner.isEmpty()) {
+            for (int i = 0; i < ChallengeSpinner.size(); i++) {
+                switch (i) {
+                    case 0: {
+                        checkBox1.setVisibility(View.VISIBLE);
+                        checkBox1.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 1: {
+                        checkBox2.setVisibility(View.VISIBLE);
+                        checkBox2.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 2: {
+                        checkBox3.setVisibility(View.VISIBLE);
+                        checkBox3.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 3: {
+                        checkBox4.setVisibility(View.VISIBLE);
+                        checkBox4.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 4: {
+                        checkBox5.setVisibility(View.VISIBLE);
+                        checkBox5.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 5: {
+                        checkBox6.setVisibility(View.VISIBLE);
+                        checkBox6.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 6: {
+                        checkBox7.setVisibility(View.VISIBLE);
+                        checkBox7.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 7: {
+                        checkBox8.setVisibility(View.VISIBLE);
+                        checkBox8.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 8: {
+                        checkBox9.setVisibility(View.VISIBLE);
+                        checkBox9.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    case 9: {
+                        checkBox10.setVisibility(View.VISIBLE);
+                        checkBox10.setText(ChallengeSpinner.get(i));
+                    }
+                    break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }

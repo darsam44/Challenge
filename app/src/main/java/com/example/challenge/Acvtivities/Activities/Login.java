@@ -44,8 +44,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         fAuth = data.getfAuth();
 
 
-        mEmail       =  (EditText) findViewById(R.id.EmailLogin);
-        mPassword    =  (EditText)findViewById(R.id.PasswordLogin);
+        mEmail =  (EditText) findViewById(R.id.EmailLogin);
+        mPassword  =  (EditText)findViewById(R.id.PasswordLogin);
         regi = (Button) findViewById(R.id.b_registar);
         Log = (Button) findViewById(R.id.b_login);
         regi .setOnClickListener(this);
@@ -109,27 +109,26 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
             }
         });
-
         passwordReset.create().show();
     }
 
     private void SingIn() {
-
         Email_log = mEmail.getText().toString().trim();
         Password_log  = mPassword.getText().toString().trim();
-
+        boolean flag = false;
         if(TextUtils.isEmpty(Email_log)){
             mEmail.setError("Email is Required.");
-            return;
+            flag = true;
         }
         if(TextUtils.isEmpty(Password_log)){
             mPassword.setError("Password is Required.");
-            return;
+            flag = true;
         }
         if(Password_log.length() < 6){
             mPassword.setError("Password Must be >= 6 Characters");
-            return;
+            flag = true;
         }
+        if (flag) return;
 
         fAuth.signInWithEmailAndPassword(Email_log, Password_log).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

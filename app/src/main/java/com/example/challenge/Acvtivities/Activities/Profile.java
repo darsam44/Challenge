@@ -43,10 +43,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     String Email;
     String Phone;
     FirebaseAuth Fauf;
-    FirebaseFirestore FStore;
-    int ASK;
-    int DO;
-    int DECLINE;;
     FireBaseData data;
     StorageReference storageReference;
 
@@ -135,9 +131,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                     Toast.makeText(Profile.this , "this Profile is delete" , Toast.LENGTH_LONG).show();
-                    //Fauf.signOut();
-                    //startActivity(new Intent(getApplicationContext() , Login.class));
-                    //finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
