@@ -28,7 +28,11 @@ public class _Friend extends AppCompatActivity {
     ArrayList<String> my_arrlist =new ArrayList<>();
     FireBaseData data;
 
-
+    String ID;
+    String ID_User;
+    String User_Name;
+    String First_Name;
+    String Last_Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,16 +43,19 @@ public class _Friend extends AppCompatActivity {
        // this line dar wirte..
         data = new FireBaseData();
        //
-        String ID=data.GetcurrentID();
+        ID=data.GetcurrentID();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(ID).child("friend");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds: snapshot.getChildren()){
+                for (DataSnapshot ds: snapshot.getChildren()) {
                     //get data
-                    my_arrlist.add(ds.getValue().toString());
+                    ID_User = ds.child("ID_User").getValue().toString();
+                    User_Name = ds.child("User_Name").getValue().toString();
+                    First_Name = ds.child("First_Name").getValue().toString();
+                    Last_Name = ds.child("Last_Name").getValue().toString();
+                    my_arrlist.add("hgdg");
                 }
-                ;
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -64,11 +71,11 @@ public class _Friend extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String []  friend_Edit=my_arrlist.get(position).toString().split(":");
                 CheckifthereUser(friend_Edit[0]);
-
             }
         });
 
     }
+
     private void CheckifthereUser(String view) {
 //        String User_Name_Search = view;
 //

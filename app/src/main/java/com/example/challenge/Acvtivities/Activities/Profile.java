@@ -55,6 +55,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     Button Choose , Edit_Text;
     Button Video_Profole;
     Button B_DelteProfile;
+    Button seeFriend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,8 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         Edit_Text.setOnClickListener(this);
         B_DelteProfile = findViewById(R.id.b_delete);
         B_DelteProfile.setOnClickListener(this);
+        seeFriend = findViewById(R.id.seeFriend);
+        seeFriend.setOnClickListener(this);
 
         ID = Fauf.getCurrentUser().getUid();
         LoadImageProfile();
@@ -114,6 +117,9 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }
         else if ( B_DelteProfile == view){
             Delete_Profile(view);
+        }
+        else if (view == seeFriend) {
+            startActivity(new Intent(Profile.this, _Friend.class));
         }
     }
 

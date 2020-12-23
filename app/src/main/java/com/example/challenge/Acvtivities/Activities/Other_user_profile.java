@@ -31,6 +31,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 public class Other_user_profile extends AppCompatActivity implements View.OnClickListener {
     String ID_search;
     String ID;
@@ -126,8 +128,15 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
     }
 
     private void AddFriend() {
+        HashMap <String,Object> temp = new HashMap<>();
+        temp.put("ID_User",ID_search);
+        temp.put("User_Name",User_Name);
+        temp.put("First_Name",First_Name);
+        temp.put("Last_Name",Last_Name);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.child(ID).child("friend").child(ID_search).setValue(User_Name+":"+First_Name+" "+Last_Name);
+        reference.child(ID).child("friend").child(ID_search).setValue(temp);
+        //reference.child(ID_search).child("friend").child(ID).setValue(User_Name+":"+First_Name+" "+Last_Name);
+        Toast.makeText(Other_user_profile.this , "add friend" , Toast.LENGTH_LONG).show();
     }
 
     private void setAdmin() {
