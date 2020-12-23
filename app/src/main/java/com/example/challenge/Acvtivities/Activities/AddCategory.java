@@ -32,9 +32,9 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
     EditText edit_cat;
     String category;
     ArrayList<String> SpinnerCategory, ChallengeSpinner;
-    HashMap<String, String> ChallengeSpinnerData;
+    HashMap<String,String> ChallengeSpinnerData;
     ArrayList<String> WhichCheckBox;
-    CheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6, checkBox7, checkBox8, checkBox9, checkBox10;
+    CheckBox checkBox1, checkBox2,checkBox3,checkBox4,checkBox5,checkBox6, checkBox7,checkBox8,checkBox9,checkBox10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +44,14 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
         plus_cat = findViewById(R.id.plus_cat);
         edit_cat = findViewById(R.id.edit_cat);
         plus_cat.setOnClickListener(this);
-        BackHomeFromAddCategory = findViewById(R.id.BackHomeFromAddCategory);
+        BackHomeFromAddCategory =findViewById(R.id.BackHomeFromAddCategory);
         BackHomeFromAddCategory.setOnClickListener(this);
-        BackAdminFromAddCategory = findViewById(R.id.BackAdminFromAddCategory);
+        BackAdminFromAddCategory =findViewById(R.id.BackAdminFromAddCategory);
         BackAdminFromAddCategory.setOnClickListener(this);
         SpinnerCategory = new ArrayList<>();
         ChallengeSpinner = new ArrayList<>();
         ChallengeSpinnerData = new HashMap<>();
-        WhichCheckBox = new ArrayList<>();
+        WhichCheckBox  = new ArrayList<>();
         checkBox1 = findViewById(R.id.checkBox11);
         checkBox2 = findViewById(R.id.checkBox22);
         checkBox3 = findViewById(R.id.checkBox33);
@@ -77,10 +77,10 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v == plus_cat) {
+        if(v == plus_cat){
             AddCategoryAsAdmin(v);
         }
-        if (v == BackHomeFromAddCategory) {
+        if (v == BackHomeFromAddCategory){
             Intent intent = new Intent(AddCategory.this, Main_Page.class);
             startActivity(intent);
         }
@@ -88,44 +88,45 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
             Intent intent = new Intent(AddCategory.this, Admin.class);
             startActivity(intent);
         }
-        if (v == checkBox1) {
-            if (checkBox1.isChecked()) {
+        if ( v == checkBox1){
+            if (checkBox1.isChecked()){
                 WhichCheckBox.add(checkBox1.getText().toString().trim());
-            } else WhichCheckBox.remove(checkBox1.getText().toString().trim());
+            }
+            else WhichCheckBox.remove(checkBox1.getText().toString().trim());
         }
-        if (v == checkBox2) {
+        if ( v == checkBox2){
             if (checkBox2.isChecked()) WhichCheckBox.add(checkBox2.getText().toString().trim());
             else WhichCheckBox.remove(checkBox2.getText().toString().trim());
         }
-        if (v == checkBox3) {
+        if ( v == checkBox3){
             if (checkBox3.isChecked()) WhichCheckBox.add(checkBox3.getText().toString().trim());
             else WhichCheckBox.remove(checkBox3.getText().toString().trim());
         }
-        if (v == checkBox4) {
+        if ( v == checkBox4){
             if (checkBox4.isChecked()) WhichCheckBox.add(checkBox4.getText().toString().trim());
             else WhichCheckBox.remove(checkBox4.getText().toString().trim());
         }
-        if (v == checkBox5) {
+        if ( v == checkBox5){
             if (checkBox5.isChecked()) WhichCheckBox.add(checkBox5.getText().toString().trim());
             else WhichCheckBox.remove(checkBox5.getText().toString().trim());
         }
-        if (v == checkBox6) {
+        if ( v == checkBox6){
             if (checkBox6.isChecked()) WhichCheckBox.add(checkBox6.getText().toString().trim());
             else WhichCheckBox.remove(checkBox6.getText().toString().trim());
         }
-        if (v == checkBox7) {
+        if ( v == checkBox7){
             if (checkBox7.isChecked()) WhichCheckBox.add(checkBox7.getText().toString().trim());
             else WhichCheckBox.remove(checkBox7.getText().toString().trim());
         }
-        if (v == checkBox8) {
+        if ( v == checkBox8){
             if (checkBox8.isChecked()) WhichCheckBox.add(checkBox8.getText().toString().trim());
             else WhichCheckBox.remove(checkBox8.getText().toString().trim());
         }
-        if (v == checkBox9) {
+        if ( v == checkBox9){
             if (checkBox9.isChecked()) WhichCheckBox.add(checkBox9.getText().toString().trim());
             else WhichCheckBox.remove(checkBox9.getText().toString().trim());
         }
-        if (v == checkBox10) {
+        if ( v == checkBox10){
             if (checkBox10.isChecked()) WhichCheckBox.add(checkBox10.getText().toString().trim());
             else WhichCheckBox.remove(checkBox10.getText().toString().trim());
         }
@@ -133,11 +134,11 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
 
     private void AddCategoryAsAdmin(View v) {
         category = edit_cat.getText().toString().trim();
-        if (TextUtils.isEmpty(category)) {
+        if(TextUtils.isEmpty(category)){
             edit_cat.setError("You must write a category!");
             return;
         }
-        if (WhichCheckBox.isEmpty()) {
+        if ( WhichCheckBox.isEmpty()){
             Toast.makeText(AddCategory.this, "You Must Fill At Least One Challenge", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -146,12 +147,13 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int temp = (int) snapshot.getChildrenCount();
-                if (temp > 0) {
+                if (temp >0){
                     Toast.makeText(AddCategory.this, "Category Already Exist, Please Change", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else{
                     Map<String, Object> Cat = new HashMap<>();
-                    for (int i = 0; i < WhichCheckBox.size(); i++)
-                        Cat.put(WhichCheckBox.get(i), ChallengeSpinnerData.get(WhichCheckBox.get(i)));
+                    for (int i=0 ; i<WhichCheckBox.size();i++)
+                    Cat.put(WhichCheckBox.get(i) , ChallengeSpinnerData.get(WhichCheckBox.get(i)) );
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Categories");
                     reference.child(category).child("challenge").setValue(Cat).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -167,7 +169,6 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
                     });
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -175,7 +176,6 @@ public class AddCategory extends AppCompatActivity implements View.OnClickListen
         });
 
     }
-
     private void setTextForCheckboxes() {
         SpinnerCategory.clear();
         ChallengeSpinner.clear();

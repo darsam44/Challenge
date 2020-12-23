@@ -13,21 +13,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class _Friend extends AppCompatActivity {
 
     ListView list_Friend;
-    ArrayList<String> my_arrlist =new ArrayList<>();
+    ArrayList<String> arrListShow;
+    ArrayList<String> arrListID;
     FireBaseData data;
-
+    ArrayAdapter arrayAdapter;
     String ID;
     String ID_User;
     String User_Name;
@@ -37,15 +36,18 @@ public class _Friend extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity___friend);
-
+        arrListShow =new ArrayList<>();
+        arrListID   =new ArrayList<>();
         list_Friend = findViewById(R.id.List_Friend2);
 
        // this line dar wirte..
         data = new FireBaseData();
        //
         ID=data.GetcurrentID();
+
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(ID).child("friend");
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds: snapshot.getChildren()) {
@@ -54,8 +56,11 @@ public class _Friend extends AppCompatActivity {
                     User_Name = ds.child("User_Name").getValue().toString();
                     First_Name = ds.child("First_Name").getValue().toString();
                     Last_Name = ds.child("Last_Name").getValue().toString();
-                    my_arrlist.add("hgdg");
+                    arrListShow.add(User_Name);
+                    arrListID.add(ID_User);
                 }
+                arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, arrListShow);
+                list_Friend.setAdapter(arrayAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -63,38 +68,61 @@ public class _Friend extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,my_arrlist);
-        list_Friend.setAdapter(arrayAdapter);
-
         list_Friend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String []  friend_Edit=my_arrlist.get(position).toString().split(":");
-                CheckifthereUser(friend_Edit[0]);
+                CheckifthereUser(arrListID.get(position),view);
             }
         });
 
     }
 
-    private void CheckifthereUser(String view) {
-//        String User_Name_Search = view;
-//
+    private void CheckifthereUser(String showID,View view) {
+        data.getReference_Users().child(showID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String First_Name = snapshot.child("First_Name").getValue(String.class);
+                String Last_Name = snapshot.child("Last_Name").getValue(String.class);
+                String User_Name = snapshot.child("User_Name").getValue(String.class);
+                String Email = snapshot.child("Email").getValue(String.class);
+                String Phone = snapshot.child("Phone").getValue(String.class);
+                String IsAdmin = snapshot.child("IsAdmin").getValue(String.class);
+
+                Intent pro = new Intent(view.getContext(), Other_user_profile.class);
+
+                pro.putExtra("ID", showID);
+                pro.putExtra("First_Name", First_Name);
+                pro.putExtra("Last_Name", Last_Name);
+                pro.putExtra("Email", Email);
+                pro.putExtra("User_Name", User_Name);
+                pro.putExtra("Phone", Phone);
+                pro.putExtra("IsAdmin", IsAdmin);
+                startActivity(pro);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 //        data.getReference_Users().addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
 //                boolean flag = false;
 //                for(DataSnapshot snapshot : datasnapshot.getChildren()  ){
-//                 String   ID = snapshot.getKey();
-//                 String   First_Name = snapshot.child("First_Name").getValue(String.class);
-//                 String   Last_Name = snapshot.child("Last_Name").getValue(String.class);
+//                 String ID = snapshot.getKey();
+//                 String First_Name = snapshot.child("First_Name").getValue(String.class);
+//                 String Last_Name = snapshot.child("Last_Name").getValue(String.class);
 //                 String User_Name = snapshot.child("User_Name").getValue(String.class);
 //                 String Email = snapshot.child("Email").getValue(String.class);
 //                 String Phone = snapshot.child("Phone").getValue(String.class);
 //                 String IsAdmin = snapshot.child("IsAdmin").getValue(String.class);
 //
-//                    if ( User_Name.equals(User_Name_Search) ){
+//                    if ( User_Name.equals(showID) ){
 //                        flag = true;
-//                        Intent pro = new Intent(view, Other_user_profile.class);
+//                        Intent pro = new Intent(view., Other_user_profile.class);
 //                        pro.putExtra( "ID" , ID);
 //                        pro.putExtra("First_Name" ,First_Name);
 //                        pro.putExtra("Last_Name", Last_Name);
@@ -116,6 +144,6 @@ public class _Friend extends AppCompatActivity {
 //
 //            }
 //        });
-//
+
     }
 }
