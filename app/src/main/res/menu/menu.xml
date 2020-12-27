@@ -2,6 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item
+        android:id="@+id/I_Main_page"
+        android:title="Main page"
+        app:showAsAction="never">
+    </item>
+
     <item
         android:id="@+id/I_My_Profile"
         android:title="My Profile"

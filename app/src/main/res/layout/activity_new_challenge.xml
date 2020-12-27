@@ -8,24 +8,12 @@
     android:background="@drawable/gradient_background"
     >
 
+    <include
 
-    <ImageView
-        android:id="@+id/image_home_challenge"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="329dp"
-        android:layout_marginRight="329dp"
-        android:layout_marginBottom="21dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/home" />
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+
+    </include>
 
     <Button
         android:id="@+id/addVido"
@@ -72,8 +60,6 @@
         android:id="@+id/textView7"
         android:layout_width="276dp"
         android:layout_height="62dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginLeft="46dp"
         android:layout_marginTop="46dp"
         android:layout_marginEnd="45dp"
         android:layout_marginRight="45dp"
@@ -81,7 +67,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_home_challenge"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

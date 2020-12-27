@@ -96,6 +96,11 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
+            case R.id.I_Main_page:{
+                Intent intent = new Intent(Main_Page.this, Main_Page.class);
+                startActivity(intent);
+            }
+            return true;
             case R.id.I_Logout: Logout();
             return true;
             case R.id.I_My_Profile:{
@@ -107,6 +112,7 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
                 Intent intent = new Intent(Main_Page.this, _Friend.class);
                 startActivity(intent);
             }
+            return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

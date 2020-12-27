@@ -8,6 +8,13 @@
     android:background="@drawable/gradient_background"
     >
 
+    <include
+
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+
+    </include>
+
     <ListView
         android:id="@+id/List_Friend2"
         android:layout_width="330dp"

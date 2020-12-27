@@ -2,10 +2,13 @@ package com.example.challenge.Acvtivities.Videos;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.challenge.Acvtivities.Activities.Login;
 import com.example.challenge.Acvtivities.Activities.Main_Page;
 import com.example.challenge.Acvtivities.Activities.Profile;
+import com.example.challenge.Acvtivities.Activities._Friend;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,6 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -48,11 +54,52 @@ public class VideoActivityChallenge extends AppCompatActivity implements View.On
 
         //function call, loadvibes
         loadVideosFromFirebase();
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
     }
     //handle Click
     public void onClick(View v){
         // start activiy to add videos
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.I_Main_page:{
+                Intent intent = new Intent(VideoActivityChallenge.this, Main_Page.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_Logout: Logout();
+                return true;
+            case R.id.I_My_Profile:{
+                Intent intent = new Intent(VideoActivityChallenge.this, Profile.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Friends:{
+                Intent intent = new Intent(VideoActivityChallenge.this, _Friend.class);
+                startActivity(intent);
+            }
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void Logout(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
     }
 
     private void loadVideosFromFirebase() {

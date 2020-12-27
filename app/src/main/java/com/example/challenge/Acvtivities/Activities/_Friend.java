@@ -2,9 +2,12 @@ package com.example.challenge.Acvtivities.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
+import com.example.challenge.Acvtivities.Videos.VideoActivityChallenge;
 import com.example.challenge.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,6 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -80,7 +86,48 @@ public class _Friend extends AppCompatActivity {
             }
         });
 
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.I_Main_page:{
+                Intent intent = new Intent(_Friend.this, Main_Page.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_Logout: Logout();
+                return true;
+            case R.id.I_My_Profile:{
+                Intent intent = new Intent(_Friend.this, Profile.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Friends:{
+                Intent intent = new Intent(_Friend.this, _Friend.class);
+                startActivity(intent);
+            }
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void Logout(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
+    }
+
 
     private void CheckifthereUser(String showID,View view) {
         data.getReference_Users().child(showID).addListenerForSingleValueEvent(new ValueEventListener() {

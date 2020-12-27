@@ -13,4 +13,11 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/row_video" />
 
+    <include
+
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+
+    </include>
+
 </RelativeLayout>

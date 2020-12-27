@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -19,6 +20,9 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +30,11 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.challenge.Acvtivities.Activities.Login;
+import com.example.challenge.Acvtivities.Activities.Main_Page;
+import com.example.challenge.Acvtivities.Activities.Profile;
+import com.example.challenge.Acvtivities.Activities._Friend;
+import com.example.challenge.Acvtivities.Challengs.new_challenge;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -136,6 +145,49 @@ public class AddVideoActivity extends AppCompatActivity {
                 videoPickDialog();
             }
         });
+
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.I_Main_page:{
+                Intent intent = new Intent(AddVideoActivity.this, Main_Page.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_Logout: Logout();
+                return true;
+            case R.id.I_My_Profile:{
+                Intent intent = new Intent(AddVideoActivity.this, Profile.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Friends:{
+                Intent intent = new Intent(AddVideoActivity.this, _Friend.class);
+                startActivity(intent);
+            }
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void Logout(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
     }
 
     // upload to Storge and to User realtime database

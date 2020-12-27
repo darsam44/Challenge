@@ -2,9 +2,13 @@ package com.example.challenge.Acvtivities.Challengs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,10 +18,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.challenge.Acvtivities.Activities.Login;
 import com.example.challenge.Acvtivities.Activities.Main_Page;
+import com.example.challenge.Acvtivities.Activities.Profile;
+import com.example.challenge.Acvtivities.Activities._Friend;
 import com.example.challenge.Acvtivities.Videos.AddVideoActivity;
 import com.example.challenge.Acvtivities.Videos.VideoActivity;
 import com.example.challenge.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +40,6 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
     List<String> categories;
     List<String> challenges;
     String info, spinner_category, spinner_challenge;
-    ImageView home;
     Button addVideosBtu;
     TextView T_info;
     Spinner spinner, spinner2;
@@ -48,8 +55,6 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_new_challenge);
 
        reff = FirebaseDatabase.getInstance().getReference("Categories");
-        home = findViewById(R.id.image_home_challenge);
-        home.setOnClickListener(this);
         T_info = findViewById(R.id.T_info);
         spinner = findViewById(R.id.spinner);
         spinner2 = findViewById(R.id.spinner2);
@@ -129,21 +134,57 @@ public class new_challenge extends AppCompatActivity implements View.OnClickList
         addVideosBtu.setOnClickListener(this);
         //handle Click
 
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.I_Logout: Logout();
+                return true;
+            case R.id.I_Main_page:{
+                Intent intent = new Intent(new_challenge.this, Main_Page.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Profile:{
+                Intent intent = new Intent(new_challenge.this, Profile.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Friends:{
+                Intent intent = new Intent(new_challenge.this, _Friend.class);
+                startActivity(intent);
+            }
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void Logout(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
     }
 
     @Override
     public void onClick(View view) {
-        if ( view == home){
-            Intent intent = new Intent( new_challenge.this , Main_Page.class);
-            startActivity(intent);
-        }
-        else if (view == addVideosBtu){
+        if (view == addVideosBtu){
             Intent moveTo = new Intent(view.getContext(),AddVideoActivity.class);
             moveTo.putExtra("Category_Choose", spinner_category);
             moveTo.putExtra("Challenge_Choose", spinner_challenge);
             startActivity(moveTo);
-
-
         }
     }
 

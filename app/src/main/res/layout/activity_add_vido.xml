@@ -8,27 +8,36 @@
     android:padding="10dp"
     tools:context=".Acvtivities.Videos.AddVideoActivity">
 
+
+    <include
+
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+
+    </include>
+
     <!--Video tital-->
+
+    <!--Video-->
+
+    <!--Button pick-->
 
     <EditText
         android:id="@+id/titleET"
-        android:layout_width="match_parent"
+        android:layout_width="333dp"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:inputType="textPersonName|textCapSentences"
         android:padding="10dp"
-        android:textColor="@color/black"/>
-
-    <!--Video-->
+        android:textColor="@color/black" />
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_below="@+id/titleET"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="15dp" />
 
-    <!--Button pick-->
     <Button
         android:id="@+id/uploadVideoBtn"
         android:layout_width="match_parent"
