@@ -2,11 +2,15 @@ package com.example.challenge.Acvtivities.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.challenge.Acvtivities.Challengs.new_challenge;
 import com.example.challenge.Acvtivities.DATA.FireBaseData;
 import com.example.challenge.Acvtivities.Videos.VideoActivity;
 import com.example.challenge.R;
@@ -49,7 +54,7 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
     StorageReference storageReference;
 
     TextView T_first, T_last , T_Email , T_Phone , T_user_name;
-    ImageView Profile_images, Home_Other;
+    ImageView Profile_images;
 
     Button Video_Other_user_profile,add_friend;
     CheckBox Check_IsAdmin;
@@ -64,8 +69,6 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         fAuth = data.getfAuth();
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        Home_Other= findViewById(R.id.Home_Other);
-        Home_Other.setOnClickListener(this);
         Profile_images = findViewById(R.id.O_image_profile);
 
         // Video_Other_user_profile//
@@ -106,16 +109,53 @@ public class Other_user_profile extends AppCompatActivity implements View.OnClic
         T_Phone.setText(Phone);
         LoadImageProfile();
         CheckIfAdmin();
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.I_Logout: Logout();
+                return true;
+            case R.id.I_Main_page:{
+                Intent intent = new Intent(Other_user_profile.this, Main_Page.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Profile:{
+                Intent intent = new Intent(Other_user_profile.this, Profile.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Friends:{
+                Intent intent = new Intent(Other_user_profile.this, _Friend.class);
+                startActivity(intent);
+            }
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void Logout(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
+    }
 
     @Override
     public void onClick(View view) {
-        if (view == Home_Other) {
-            Intent in = new Intent(Other_user_profile.this, Main_Page.class);
-            startActivity(in);
-        } else if (view == Video_Other_user_profile) {
+         if (view == Video_Other_user_profile) {
             Intent pro = new Intent(view.getContext(), VideoActivity.class);
             pro.putExtra("ID", ID_search);
             startActivity(pro);

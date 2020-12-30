@@ -2,6 +2,7 @@ package com.example.challenge.Acvtivities.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,6 +11,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,7 +50,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     FireBaseData data;
     StorageReference storageReference;
 
-    ImageView Profile_images, P_home;
+    ImageView Profile_images;
     TextView First_Name_t , Last_Name_t , Email_t , UserName_t , Phone_t;
     Button Choose , Edit_Text;
     Button Video_Profole;
@@ -57,9 +61,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        P_home = findViewById(R.id.P_home);
-        P_home.setOnClickListener(this);
 
         //data
         data = new FireBaseData();
@@ -92,8 +93,48 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         LoadImageProfile();
         ShowAllRefernce();
 
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.I_Logout: Logout();
+                return true;
+            case R.id.I_Main_page:{
+                Intent intent = new Intent(Profile.this, Main_Page.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Profile:{
+                Intent intent = new Intent(Profile.this, Profile.class);
+                startActivity(intent);
+            }
+            return true;
+            case R.id.I_My_Friends:{
+                Intent intent = new Intent(Profile.this, _Friend.class);
+                startActivity(intent);
+            }
+            return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    public void Logout(){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext() , Login.class));
+        finish();
+    }
 
     @Override
     public void onClick(View view) {
@@ -103,10 +144,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         }
         else if ( view == Edit_Text){
             SendToEditProfile(view);
-        }
-        else if ( P_home == view){
-            Intent in = new Intent(Profile.this , Main_Page.class);
-            startActivity(in);
         }
         else if (view == Video_Profole){
             startActivity(new Intent(Profile.this, VideoActivity.class));

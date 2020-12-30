@@ -7,6 +7,13 @@
     tools:context=".Acvtivities.Activities.Profile"
     android:background="@drawable/gradient_background">
 
+    <include
+
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+
+    </include>
+
     <TextView
         android:id="@+id/t_Email"
         android:layout_width="120dp"
@@ -186,22 +193,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.43"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/P_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="36dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/t_First_name"
-        app:layout_constraintEnd_toStartOf="@+id/image_profile"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/home" />
 
     <Button
         android:id="@+id/Video_Profole"

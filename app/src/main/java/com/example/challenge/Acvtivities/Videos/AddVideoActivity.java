@@ -224,7 +224,7 @@ public class AddVideoActivity extends AppCompatActivity {
                     Reff.child(spinner_category).child("Videos").child(timestamp).setValue(hashmap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            System.out.println("Video succefull uploaded to Categories");
+
 
                         }
                     });
@@ -237,7 +237,8 @@ public class AddVideoActivity extends AppCompatActivity {
                             //Video details added to database
                             progressDialog.dismiss();
                             Toast.makeText(AddVideoActivity.this, "Video Uploaded... ", Toast.LENGTH_SHORT).show();
-
+                            Intent intent = new Intent(AddVideoActivity.this , new_challenge.class);
+                            startActivity(intent);
                         }
                     })
                             .addOnFailureListener(new OnFailureListener() {
@@ -245,6 +246,7 @@ public class AddVideoActivity extends AppCompatActivity {
                                 public void onFailure(@NonNull Exception e) {
                                     progressDialog.dismiss();
                                     Toast.makeText(AddVideoActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                                 }
                             });
                 }
