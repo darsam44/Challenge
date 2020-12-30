@@ -45,10 +45,10 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
 
     EditText Edit_Search;
     Button B_Challenge;
-    Button B_Funny;
-    Button B_Family;
-    Button B_Scary;
-    Button B_Excited;
+    ImageView B_Funny;
+    ImageView B_Family;
+    ImageView B_Scary;
+    ImageView B_Excited;
     ImageView b_search;
     ImageView B_Admin;
 
@@ -69,13 +69,13 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
         b_search.setOnClickListener(this);
         B_Challenge = (Button) findViewById(R.id.new_challenge);
         B_Challenge.setOnClickListener(this);
-        B_Funny = (Button) findViewById(R.id.MoveToFunny);
+        B_Funny =  findViewById(R.id.MoveToFunny);
         B_Funny.setOnClickListener(this);
-        B_Family = (Button) findViewById(R.id.MoveToFamily);
+        B_Family =  findViewById(R.id.MoveToFamily);
         B_Family.setOnClickListener(this);
         B_Excited = findViewById(R.id.MoveToExcited);
         B_Excited.setOnClickListener(this);
-        B_Scary = (Button) findViewById(R.id.MoveToScarry);
+        B_Scary = findViewById(R.id.MoveToScarry);
         B_Scary.setOnClickListener(this);
         B_Admin = findViewById(R.id.B_toAdmin);
         B_Admin.setOnClickListener(this);
@@ -126,21 +126,20 @@ public class Main_Page extends AppCompatActivity implements View.OnClickListener
             Intent intent = new Intent(Main_Page.this, new_challenge.class);
             startActivity(intent);
         } else if (view == B_Family) {
-            B_Family.getText().toString().trim();
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
-            pro.putExtra("type", B_Family.getText().toString().trim());
+            pro.putExtra("type", "Family");
             startActivity(pro);
         } else if (view == B_Funny) {
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
-            pro.putExtra("type", B_Funny.getText().toString().trim());
+            pro.putExtra("type", "Funny");
             startActivity(pro);
         } else if (view == B_Scary) {
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
-            pro.putExtra("type", B_Scary.getText().toString().trim());
+            pro.putExtra("type", "Scary");
             startActivity(pro);
         } else if (view == B_Excited) {
             Intent pro = new Intent(view.getContext(), VideoActivityChallenge.class);
-            pro.putExtra("type", B_Excited.getText().toString().trim());
+            pro.putExtra("type", "Excited");
             startActivity(pro);
         }
         else if (view == B_Admin) {
