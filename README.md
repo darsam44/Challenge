@@ -25,31 +25,40 @@ Login Activity,Register Activity,Main Page,Profile,Main, Page,Other User Profile
 ## Features: <br/>
 
 The application supports the following features:
+- Login Activity
+- Sign In Activity
+- Profile Activity
+- Last Challenges List
+- Admin Management Panel
+- Search for a Friends
+- Uploaded videos
+- See videos
 
-*Login Activity
-*Sign In Activity
-*Profile Activity
-   Possibility to edit profile
-*Last Challenges List
-*Admin Management Panel 
-  Add new categories challenges
-*Search for a Friends
-
-And Much More!
+And Much More!!!
 
 ## Selected Features: <br/>
+<table cellspacing="10">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p style="text-align: center;"><strong>Add new categories challenges (Only a manager can do that)</strong></p>
+<p> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500"> </p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: center;"><strong>In your friends and watch of a people's user</strong></p>
+<p> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500"> </p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: center;"><See Challenges by categories</strong></p>
+<p> ADD VIDO See Challenges by categories</strong </p>
+</td>
+<td style="text-align: center;">
+<p style="text-align: center;">Add uploaded Challenges your</strong></p>
+<p> ADD VIDO Add uploaded Challenges your  </p>
+</td>
 
-Add new categories challenges (Only a manager can do that)
-
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500">
-
-In your friends and watch of a people's user 
-
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500">
-
-See Challenges by categories: 
-
-Add uploaded Challenges your:
+</tbody>
+</table>
 
 
 ## Diagrams: <br/>
