@@ -46,6 +46,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
     String User_Name;
     String Email;
     String Phone;
+    String IsAdmin;
     FirebaseAuth Fauf;
     FireBaseData data;
     StorageReference storageReference;
@@ -199,6 +200,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                 Email =  snapshot.child("Email").getValue().toString();
                 User_Name = snapshot.child("User_Name").getValue().toString();
                 Phone = snapshot.child("Phone").getValue().toString();
+                IsAdmin = snapshot.child("IsAdmin").getValue().toString();
 
                 First_Name_t.setText(First_Name);
                 Last_Name_t.setText(Last_Name);
@@ -220,6 +222,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
         pro.putExtra("Email", Email);
         pro.putExtra("User_Name", User_Name);
         pro.putExtra("Phone", Phone);
+        pro.putExtra("IsAdmin" , IsAdmin);
         startActivity(pro);
     }
 

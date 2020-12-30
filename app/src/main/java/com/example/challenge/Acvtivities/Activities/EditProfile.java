@@ -37,6 +37,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
     String User_Name;
     String Email;
     String Phone;
+    String IsAdmin;
     //data
     FireBaseData data;
     FirebaseAuth fAuth;
@@ -59,6 +60,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         User_Name =dataFromProfile.getStringExtra("User_Name");
         Email =dataFromProfile.getStringExtra("Email");
         Phone =dataFromProfile.getStringExtra("Phone");
+        IsAdmin = dataFromProfile.getStringExtra("IsAdmin");
 
         e_First = findViewById(R.id.FirstName_p_Edit);
         e_Last = findViewById(R.id.LastName_p_Edit);
@@ -123,7 +125,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
                     user.put("Email", Email);
                     user.put("User_Name", User_Name);
                     user.put("Phone", Phone);
-                    user.put( "IsAdmin" , "no");
+                    user.put( "IsAdmin" , IsAdmin);
 
                     reference.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
