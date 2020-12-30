@@ -5,34 +5,33 @@ This application was built as part of a software engineering course at Ariel Uni
 
 
 ## About the App: <br/>
-### app will be a social network.
 
-An app will be a social network that aims to get people to go out and do positive challenges by categories, take photos of them and see them all
-
-### The lessor :
+### An app will be a social network that aims to get people to go out and do positive challenges by categories, Take photos of them and see them all.
 
 First, you will need to download the app to your personal device, create a trusted profile that includes identifying information.
 Then you will be able to see all the challenges uploaded to the network from other users,
 and also you will be able to perform them and uploaded them and will be able to create a list of friends you like to see.
 
 
-## Photos from the App: <br/>
+### Photos from the App: <br/>
 Login Activity,Register Activity,Main Page,Profile,Main, Page,Other User Profile
 
 <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Login.gif" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Register.gif" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Main%20page%20pic%20admin.JPG" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Screenshot_1609339457.png" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/other%20user%20as%20admin.png" width="250" height="500"> 
 
 
-## Features: <br/>
+### Features: <br/>
 
 The application supports the following features:
-- Login Activity
-- Sign In Activity
-- Profile Activity
-- Last Challenges List
-- Admin Management Panel
-- Search for a Friends
-- Uploaded videos
-- See videos
+- Data Base
+  - Network service Firebase
+- Videos
+  - Uploaded videos
+  - Duload videos
+  - See list videos
+- Users
+  - Build a personal user
+  - Build a Admin Management user
+  - Connected between users
 
 And Much More!!!
 
@@ -48,15 +47,17 @@ And Much More!!!
 <p style="text-align: center;"><strong>In your friends and watch of a people's user</strong></p>
 <p> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500"> </p>
 </td>
+</tr>
+<tr>
 <td style="text-align: center;">
-<p style="text-align: center;"><See Challenges by categories</strong></p>
-<p> ADD VIDO See Challenges by categories</strong </p>
+<p style="text-align: center;"><strong>See Challenges by categories</strong></p>
+<p> ------- </p>
 </td>
 <td style="text-align: center;">
-<p style="text-align: center;">Add uploaded Challenges your</strong></p>
-<p> ADD VIDO Add uploaded Challenges your  </p>
+<p style="text-align: center;"><strong>Add uploaded Challenges your</strong></p>
+<p> -----  </p>
 </td>
-
+</tr>
 </tbody>
 </table>
 
