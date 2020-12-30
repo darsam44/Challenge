@@ -5,15 +5,57 @@ This application was built as part of a software engineering course at Ariel Uni
 
 
 ## About the App: <br/>
-### A social app that allows you to upload videos of challenges that are set by the managers.
+### app will be a social network.
+
+An app will be a social network that aims to get people to go out and do positive challenges by categories, take photos of them and see them all
+
+### The lessor :
+
+First, you will need to download the app to your personal device, create a trusted profile that includes identifying information.
+Then you will be able to see all the challenges uploaded to the network from other users,
+and also you will be able to perform them and uploaded them and will be able to create a list of friends you like to see.
+
 
 ## Photos from the App:
+Login Activity
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Login.gif" width="250" height="500">
+Register Activity
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Register.gif" width="250" height="500">
+Main Page
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Main%20page%20pic%20admin.JPG" width="250" height="500">
+Profile
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Screenshot_1609339457.png" width="250" height="500">
+Other User Profile
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/other%20user%20as%20admin.png" width="250" height="500"> <img 
 
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Login.gif" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Register.gif" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Main%20page%20pic%20admin.JPG" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Screenshot_1609339457.png" width="250" height="500">
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/other%20user%20as%20admin.png" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500">
 
+##Features:
 
+The application supports the following features:
 
+*Login Activity
+*Sign In Activity
+*Profile Activity
+   Possibility to edit profile
+*Last Challenges List
+*Admin Management Panel 
+  Add new categories challenges
+*Search for a Friends
+
+And Much More!
+
+##Selected Features:
+Add new categories challenges (Only a manager can do that)
+src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500">
+
+In your friends and watch of a people's user 
+src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500"> <img 
+
+See Challenges by categories: 
+--------------------------
+
+Add uploaded Challenges your
+------------------------------
 
 ## Diagrams
 <table cellspacing="10">
