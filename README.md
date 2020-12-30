@@ -53,4 +53,7 @@ This application was built as part of a software engineering course at Ariel Uni
 </tbody>
 </table>
 
+## Technology:
+
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/Technology/firebasephoto.png" width="250"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/Technology/gitphoto.png" width="250"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/Technology/androidphoto.png" width="250" > <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/Technology/agilephoto.png" width="250" > <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/Technology/branchphoto.jpg" width="250"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/Technology/javaphoto.png" width="250" height="200"> 
 
