@@ -16,20 +16,13 @@ Then you will be able to see all the challenges uploaded to the network from oth
 and also you will be able to perform them and uploaded them and will be able to create a list of friends you like to see.
 
 
-## Photos from the App:
-Login Activity
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Login.gif" width="250" height="500">
-Register Activity
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Register.gif" width="250" height="500">
-Main Page
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Main%20page%20pic%20admin.JPG" width="250" height="500">
-Profile
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Screenshot_1609339457.png" width="250" height="500">
-Other User Profile
-<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/other%20user%20as%20admin.png" width="250" height="500"> <img 
+## Photos from the App: <br/>
+Login Activity,Register Activity,Main Page,Profile,Main, Page,Other User Profile
+
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Login.gif" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Register.gif" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Main%20page%20pic%20admin.JPG" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Screenshot_1609339457.png" width="250" height="500"> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/other%20user%20as%20admin.png" width="250" height="500"> 
 
 
-##Features:
+## Features: <br/>
 
 The application supports the following features:
 
@@ -44,20 +37,23 @@ The application supports the following features:
 
 And Much More!
 
-##Selected Features:
+## Selected Features: <br/>
+
 Add new categories challenges (Only a manager can do that)
-src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500">
+
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500">
 
 In your friends and watch of a people's user 
-src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500"> <img 
+
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500">
 
 See Challenges by categories: 
---------------------------
 
-Add uploaded Challenges your
-------------------------------
+Add uploaded Challenges your:
 
-## Diagrams
+
+## Diagrams: <br/>
+
 <table cellspacing="10">
 <tbody>
 <tr>
