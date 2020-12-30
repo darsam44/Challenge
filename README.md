@@ -8,6 +8,15 @@ This application was built as part of a software engineering course at Ariel Uni
 ### A social app that allows you to upload videos of challenges that are set by the managers.
 
 ##Photos from the App
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Login.gif" width="250" height="500">
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Register.gif" width="250" height="500">
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Main%20page%20pic%20admin.JPG" width="250" height="500">
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Screenshot_1609339457.png" width="250" height="500">
+<br/>
+
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/other%20user%20as%20admin.png" width="250" height="500">
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500">
+<img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500">
 
 
 ## Diagrams
