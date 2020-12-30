@@ -7,6 +7,9 @@ This application was built as part of a software engineering course at Ariel Uni
 ## About the App: <br/>
 ### A social app that allows you to upload videos of challenges that are set by the managers.
 
+##Photos from the App
+
+
 ## Diagrams
 <table cellspacing="10">
 <tbody>
