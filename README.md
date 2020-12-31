@@ -6,11 +6,11 @@ This application was built as part of a software engineering course at Ariel Uni
 
 ## About the App: <br/>
 
-### An app will be a social network that aims to get people to go out and do positive challenges by categories, Take photos of them and see them all.
+### An app will be a social network that aims to get people to go out and do positive challenges by categories, Upload the videos to the App and get rating and give rating on the Challenges.
 
 First, you will need to download the app to your personal device, create a trusted profile that includes identifying information.
 Then you will be able to see all the challenges uploaded to the network from other users,
-and also you will be able to perform them and uploaded them and will be able to create a list of friends you like to see.
+and also you will be able to perform your own videos and uploaded the videos to the app and will be able to create a list of friends you like to see their videos.
 
 
 ### Photos from the App: <br/>
@@ -26,14 +26,12 @@ The application supports the following features:
   - Network service Firebase
 - Videos
   - Uploaded videos
-  - Duload videos
+  - Download videos
   - See list videos
 - Users
   - Build a personal user
   - Build a Admin Management user
   - Connected between users
-
-And Much More!!!
 
 ## Selected Features: <br/>
 <table cellspacing="10">
