@@ -38,7 +38,7 @@ The application supports the following features:
 <tbody>
 <tr>
 <td style="text-align: center;">
-<p style="text-align: center;"><strong>Add new categories challenges (Only a manager can do that)</strong></p>
+<p style="text-align: center;"><strong>Add new categories challenges <br/> (Only a manager can do that)</strong></p>
 <p> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500"> </p>
 </td>
 <td style="text-align: center;">
@@ -49,11 +49,11 @@ The application supports the following features:
 <tr>
 <td style="text-align: center;">
 <p style="text-align: center;"><strong>See Challenges by categories</strong></p>
-<p> ------- </p>
+<p>  <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/all%20the%20videos.gif" width="250" height="500"> </p> 
 </td>
 <td style="text-align: center;">
-<p style="text-align: center;"><strong>Add uploaded Challenges your</strong></p>
-<p> -----  </p>
+<p style="text-align: center;"><strong>Upload Challenge to the app</strong></p>
+<p> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/wakeupron.gif" width="250" height="500"> </p>
 </td>
 </tr>
 </tbody>
