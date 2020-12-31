@@ -38,11 +38,11 @@ The application supports the following features:
 <tbody>
 <tr>
 <td style="text-align: center;">
-<p style="text-align: center;"><strong>Add new categories challenges <br/> (Only a manager can do that)</strong></p>
+<p style="text-align: center;"><strong>Add new challenge to one or more categories <br/> (Only a manager can do that)</strong></p>
 <p> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/Make%20a%20New%20Challenge%20as%20admin.gif" width="250" height="500"> </p>
 </td>
 <td style="text-align: center;">
-<p style="text-align: center;"><strong>In your friends and watch of a people's user</strong></p>
+<p style="text-align: center;"><strong>Watch my list friends <br/> and get in their profile</strong></p>
 <p> <img src="https://github.com/darsam44/Challenge/blob/master/app/src/main/Photos/app%20photos/FriendList.gif" width="250" height="500"> </p>
 </td>
 </tr>
