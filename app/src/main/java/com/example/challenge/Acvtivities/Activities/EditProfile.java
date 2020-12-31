@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -102,51 +103,74 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             return;
         }
         ID = fAuth.getCurrentUser().getUid();
-        First_Name = e_First.getText().toString();
-        Last_Name = e_Last.getText().toString();
-        User_Name = e_Username.getText().toString();
-        Email = e_Email.getText().toString();
-        Phone = e_Phone.getText().toString();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(ID);
+        String First_Name_e = e_First.getText().toString();
+        String Last_Name_e = e_Last.getText().toString();
+        String User_Name_e = e_Username.getText().toString();
+        String Email_e = e_Email.getText().toString();
+        String Phone_e = e_Phone.getText().toString();
 
-        Query userNameQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("User_Name").equalTo(User_Name);
-        userNameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int temp = (int) snapshot.getChildrenCount();
-                if ( snapshot.getChildrenCount() >0){
-                    Toast.makeText(EditProfile.this , "Choose a diffrent username" , Toast.LENGTH_LONG).show();
+        boolean flag = true;
+        if(TextUtils.isEmpty(First_Name_e)){
+            e_First.setError("Email is Required.");
+            flag = false;
+        }
+        if(TextUtils.isEmpty(Last_Name_e)){
+            e_Last.setError("LastName is Required.");
+            flag = false;
+        }
+        if(TextUtils.isEmpty(User_Name_e)){
+            e_Username.setError("FirstName is Required.");
+            flag = false;
+        }
+        if(TextUtils.isEmpty(Email_e)){
+            e_Email.setError("UserName is Required.");
+            flag = false;
+        }
+        if(TextUtils.isEmpty(Phone_e)){
+            e_Phone.setError("Phone is Required.");
+            flag = false;
+        }
+        if ( !flag){
+            return;
+        }
+
+        if (!(User_Name_e.equals(User_Name)) ) {
+            Query userNameQuery = FirebaseDatabase.getInstance().getReference().child("Users").orderByChild("User_Name").equalTo(User_Name_e);
+            userNameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    int temp = (int) snapshot.getChildrenCount();
+                    if (snapshot.getChildrenCount() > 0) {
+                        Toast.makeText(EditProfile.this, "Choose a diffrent username", Toast.LENGTH_LONG).show();
+                    } else {
+                        User_Name = User_Name_e;
+                        reference.child("User_Name").setValue(User_Name_e);
+                    }
                 }
-                else{
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(ID);
 
-                    Map<String, Object> user = new HashMap<>();
-                    user.put("First_Name", First_Name);
-                    user.put("Last_Name", Last_Name);
-                    user.put("Email", Email);
-                    user.put("User_Name", User_Name);
-                    user.put("Phone", Phone);
-                    user.put( "IsAdmin" , IsAdmin);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    reference.setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            startActivity(new Intent(getApplicationContext(),Profile.class));
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EditProfile.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
-            }
+            });
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
+        if ( !(First_Name_e.equals(First_Name)) ){
+            First_Name = First_Name_e;
+            reference.child("First_Name").setValue(First_Name_e);
+        }
+        if ( !(Last_Name_e.equals(Last_Name)) ){
+            Last_Name=Last_Name_e;
+            reference.child("Last_Name").setValue(Last_Name_e);
+        }
+        if ( !(Email_e.equals(Email)) ){
+            Email=Email_e;
+            reference.child("Email").setValue(Email_e);
+        }
+        if ( !(Phone_e.equals(Phone)) ){
+            Phone=Phone_e;
+            reference.child("Phone").setValue(Phone);
+        }
     }
 }
