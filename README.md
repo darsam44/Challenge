@@ -6,7 +6,7 @@ This application was built as part of a software engineering course at Ariel Uni
 
 ## About the App: <br/>
 
-### An app will be a social network that aims to get people to go out and do positive challenges by categories, Upload the videos to the App and get rating and give rating on the Challenges.
+### This application is a social network that aims to get people to go out and do positive challenges by categories. Upload the videos to the App and get rated and rate another users Challenges videos.
 
 First, you will need to download the app to your personal device, create a trusted profile that includes identifying information.
 Then you will be able to see all the challenges uploaded to the network from other users,
